@@ -7,7 +7,16 @@ function player(x, y){
     
     this.width = 1;
     this.height = 3;
+    
         
+    this.right = function(){return this.x + this.width/2;};
+    this.left = function(){return this.x - this.width/2};
+    this.top = function(){return this.y - this.height/2};
+    this.bottom = function(){return this.y + this.height/2};
+    
+    this.printSides = function(){        
+        console.log("Player Right: " + this.right() + " Left: " + this.left() + " Top" + this.top() + " Bottom" + this.bottom());
+    }
     
     this.draw = function(){
         drawRectCentered(this.x, this.y, this.width, this.height);        
@@ -33,14 +42,26 @@ function player(x, y){
         }
         
         this.updateState(dt);            
-        this.velY -= 10*10*dt;                
+        this.velY -= game.gravity*game.gravity*dt;                
+        
+        
+        
+        if(game.keys[87]){
+            this.velY = 20;
+        }
+        var oldX = this.x;
+        var oldY = this.y;
+        
+        this.x += this.velX*dt;
+        this.y -= this.velY*dt;   
         
         if(playerFloorHit(this, game.floors[0])){
-            this.velY = 0;   
+            //if(
+            this.velY = 0;
+            //this.x = oldX;
+            this.y = game.floors[0].top()-this.height/2;
+            //this.y = game.floors[0].top() - this.height/2;
         }
-        this.x += this.velX*dt;
-        this.y -= this.velY*dt;                    
-        
     }
     
     this.updateState = function(dt){

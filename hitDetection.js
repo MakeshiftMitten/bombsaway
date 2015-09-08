@@ -1,6 +1,29 @@
 function playerFloorHit(player, floor)
 {
-    if(player.y-player.height > floor.y - floor.height)
-        return true;
-    return false;
+    var isVerticalCollision = false;
+    var isHorizontalCollision = false;
+    player.printSides();    
+    floor.printSides();
+    if(player.bottom() > floor.top() && player.bottom() < floor.bottom() ||
+       player.top() < floor.bottom() && player.top() > floor.top())    
+         isVerticalCollision = true;               
+    if(player.right() > floor.left() && player.right() < floor.right() ||
+        player.left() < floor.left() && player.left() > floor.right())
+        isHorizontalCollision = true;        
+
+    return isVerticalCollision&&isHorizontalCollision;
+}
+                
+function rectangleHitCircle(rectangle, circle){
+    
+    console.log("player: "+rectangle.width + " this.right " + rectangle.right + rectangle.height);    
+}
+                
+function rectangleHitRectangle(rectangle, rectangle){
+    rectangle.printSides();
+}
+    
+function circleHitCircle(circle, circle)
+{
+        
 }
