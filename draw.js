@@ -64,3 +64,11 @@ function drawFilledCircle(gameX, gameY, radius)
     ctx.fill();
     ctx.stroke();    
 }
+
+function drawText(gameX, gameY, text)
+{
+    var ctx = game.ctx;
+    ctx.beginPath();
+    ctx.fillText(text, gameXToCanvasX(gameX), gameYToCanvasY(gameY));    
+    ctx.stroke();
+}

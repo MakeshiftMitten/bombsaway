@@ -32,13 +32,16 @@ function bomb(x, y, velX, velY, destX, destY){
     
     this.draw = function(){
         //drawRectCentered(this.x, this.y, 10, 10);
+        
         if(this.state == this.states.Placed)
         {
             drawCircle(this.x, this.y, this.radius);
+            drawText(this.x, this.y, "BEZIER CURVE$15 SPECIAL");
         }        
         else if(this.state  == this.states.Detonated)
         {
             drawFilledCircle(this.x, this.y, this.radius);
+            drawText(this.x, this.y, "GIVE ME YOUR MONEY");
         }
     }
     
