@@ -9,6 +9,7 @@ function gameObject(){
     this.ctx = this.Canvas.getContext("2d"); 
     
     //Physics Variables
+    //this.gravity = 10;
     this.gravity = 10;
     
     //Set up game object arrays here

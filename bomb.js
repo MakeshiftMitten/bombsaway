@@ -1,10 +1,20 @@
-function bomb(x, y, velX, velY){
+function bomb(x, y, velX, velY, destX, destY){
     this.x = x;
     this.y = y;
     
-    this.velX = velX;
-    this.velY = velY;
+    var slopeTop= destY - y;
+    var slopeBottom = destX - x;
+    var slope = slopeTop/slopeBottom;
     
+    var deg = Math.atan(Math.abs(slopeTop/slopeBottom));    
+    var dist = Math.sqrt((y-destY)*(y-destY) + (x-destX)*(x-destX));    
+
+    var xRef = (destX-x)/Math.abs(destX-x);
+    var yRef = -(destY-y)/Math.abs(destY-y);
+    
+    this.velX = Math.cos(deg)*dist*xRef*2;
+    this.velY = Math.sin(deg)*dist*yRef*2;
+        
     this.radius = .5;
     
     //Timers and Radii
@@ -26,7 +36,7 @@ function bomb(x, y, velX, velY){
         {
             drawCircle(this.x, this.y, this.radius);
         }        
-        else if(this.state == this.states.Detonated)
+        else if(this.state  == this.states.Detonated)
         {
             drawFilledCircle(this.x, this.y, this.radius);
         }
@@ -46,7 +56,7 @@ function bomb(x, y, velX, velY){
         this.updateState(dt);
         
         if(this.state == this.states.Placed){
-            this.velY -= 10*10*dt; //*dt;
+            //this.velY -= game.gravity*game.gravity/2*dt; //*dt;
         }
         else if(this.state == this.states.Detonated){
             this.velX = 0;
@@ -69,7 +79,7 @@ function bomb(x, y, velX, velY){
         }
         else if(this.state == this.states.Detonated){
             this.currentTimer-=dt;
-            console.log((this.explosionMaxRadius-this.explosionBaseRadius)/2 + " " + this.radius);
+            //console.log((this.explosionMaxRadius-this.explosionBaseRadius)/2 + " " + this.radius);
             this.radius += ((this.explosionMaxRadius-this.explosionBaseRadius)*(dt));
             if(this.currentTimer <= 0){
                 this.disappear();

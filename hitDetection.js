@@ -2,8 +2,8 @@ function playerFloorHit(player, floor)
 {
     var isVerticalCollision = false;
     var isHorizontalCollision = false;
-    player.printSides();    
-    floor.printSides();
+    //player.printSides();    
+    //floor.printSides();
     if((player.bottom() > floor.top() && player.bottom() < floor.bottom()) ||
        (player.top() < floor.bottom() && player.top() > floor.top()))    
          isVerticalCollision = true;               

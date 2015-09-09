@@ -6,8 +6,8 @@ function mouseClick(){
     var y = (event.clientY - (window.innerHeight - gameCanvas.height)/2)/gameCanvas.height*game.gameHeight;
     
     //Demo: Add a bomb on click
-    game.bombs.push(new bomb(x, y));    
-    game.bombs.push(new bomb(game.players[0].x, game.players[0].y, 0, 0));
+    //game.bombs.push(new bomb(x, y));    
+    game.bombs.push(new bomb(game.players[0].x, game.players[0].y, 0, 0, game.mouseX, game.mouseY));
 }
 
 function mouseMoved(){
