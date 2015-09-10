@@ -19,7 +19,7 @@ function player(x, y){
     }
     
     this.draw = function(){
-        drawRectCentered(this.x, this.y, this.width, this.height);        
+        draw.drawRectCentered(this.x, this.y, this.width, this.height);        
     }        
     
         
