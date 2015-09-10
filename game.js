@@ -26,7 +26,7 @@ function gameObject(){
     
     //Physics Variables
     //this.gravity = 10;
-    this.gravity = 10;
+    this.gravity = 0;
     
     //Set up game object arrays here
     this.clicks = [];
@@ -39,10 +39,10 @@ function gameObject(){
     
     //Add a player
     //this.players.push(new player(this.gameWidth/2, this.gameHeight/2));
-    this.players.push(new player(this.gameWidth/2, 10));
+    this.players.push(new player(this.gameWidth/2, this.gameHeight/2));
     
     //Add a floor
-    this.floors.push(new floor(50, 40, 50, 5));
+    this.floors.push(new floor(150, 40, 10, 5));
                      
     //Time Stuff
     this.lastTime = Date.now();
