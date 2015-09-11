@@ -46,10 +46,7 @@ function bomb(x, y, velX, velY, destX, destY){
         else if(this.state  == this.states.Detonated)
         {
             if(game.selectedWeapon == game.weapons.Bomb)
-                draw.drawFilledCircle(this.x, this.y, this.radius);            
-            if(game.selectedWeapon == game.weapons.Well)
-                draw.drawCircle(this.x, this.y, this.radius);            
-            
+                draw.drawFilledCircle(this.x, this.y, this.radius);                                    
         }
     }
     

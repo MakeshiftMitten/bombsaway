@@ -8,7 +8,8 @@ function drawLevelCentricObject(){
             //Bounding Rect    
             ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height); 
             ctx.beginPath();
-            ctx.rect(0, 0, gameCanvas.width, gameCanvas.height);                  
+            ctx.rect(0, 0, gameCanvas.width, gameCanvas.height);             
+            ctx.rect(0, 0, gameCanvas.width, gameCanvas.height - gameXToCanvasX(20));       
             ctx.stroke();        
             if(game.isMobile())
                 draw.drawText(0, 10, "MOBILE");                             
@@ -25,6 +26,11 @@ function drawLevelCentricObject(){
             for(var b = 0; b < game.bombs.length; b++)
             {
                 game.bombs[b].draw();            
+            }    
+        
+            for(var w = 0; w < game.wells.length; w++)
+            {
+                game.wells[w].draw();            
             }    
 
             for(var p = 0; p < game.players.length; p++){

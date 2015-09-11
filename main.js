@@ -52,6 +52,10 @@ function update(dt){
     for(var b = 0; b < game.bombs.length; b++){
         game.bombs[b].update(dt);
     }
+    
+    for(var w = 0; w < game.wells.length; w++){
+        game.wells[w].update(dt);
+    }
 }
 
 game = new gameObject();

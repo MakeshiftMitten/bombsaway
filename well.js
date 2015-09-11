@@ -31,8 +31,10 @@ function well(x, y, velX, velY, destX, destY){
     this.explosionBaseRadius = .5;
     this.explosionMaxRadius = dist/2;
     
+    this.standingTimer = 5;
+    
     //Start in the plant state
-    this.states = {"Placed":0, "Detonated":1, "Dissipated":2};
+    this.states = {"Placed":0, "Detonated":1, "Standing":2, "Dissipated":3};
     this.state = this.states.Placed;
     this.currentTimer = this.plantTimer;    
     
@@ -45,11 +47,11 @@ function well(x, y, velX, velY, destX, destY){
         }        
         else if(this.state  == this.states.Detonated)
         {
-            if(game.selectedWeapon == game.weapons.Bomb)
-                draw.drawFilledCircle(this.x, this.y, this.radius);            
-            if(game.selectedWeapon == game.weapons.Well)
-                draw.drawCircle(this.x, this.y, this.radius);            
-            
+            draw.drawCircle(this.x, this.y, this.radius);            
+        }
+        else if(this.state  == this.states.Standing)
+        {
+            draw.drawCircle(this.x, this.y, this.radius);            
         }
     }
     
@@ -77,6 +79,12 @@ function well(x, y, velX, velY, destX, destY){
         game.wells.push(this);
     }
     
+    this.stand = function(){
+        this.state = this.states.Standing;
+        this.currentTimer = this.standingTimer;
+        
+    }
+            
     this.disappear = function(){
         this.state = this.states.Dissipated;        
     }
@@ -108,12 +116,19 @@ function well(x, y, velX, velY, destX, destY){
         }
         else if(this.state == this.states.Detonated){
             this.currentTimer-=dt;
-            //console.log((this.explosionMaxRadius-this.explosionBaseRadius)/2 + " " + this.radius);
+            
             if(this.currentTimer > 0){
                 this.radius += ((this.explosionMaxRadius-this.explosionBaseRadius)*(dt));
             }
             if(this.currentTimer <= 0){
-                //this.disappear();
+                this.stand();
+            }
+        }  
+        else if(this.state == this.states.Standing){
+            this.currentTimer-=dt;
+                        
+            if(this.currentTimer <= 0){
+                this.disappear();
             }
         }  
     }

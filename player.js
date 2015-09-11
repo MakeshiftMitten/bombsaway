@@ -75,6 +75,22 @@ function player(x, y){
             this.y = game.floors[0].top()-this.height/2;
             //this.y = game.floors[0].top() - this.height/2;
         }
+        
+        if(this.x-this.width/2 < 0){
+            this.x = this.width/2;
+            this.velX = -this.velX/2;
+        }
+        if(this.x+this.width/2 > game.gameWidth){
+            this.x = game.gameWidth - this.width/2;
+            this.velX = -this.velX/2;
+        }
+        if(this.y+this.height/2 > game.gameHeight - 20){
+            console.log("This.y: " + (this.y + this.height/2));
+            console.log("This.gameHeight " + (game.gameHeight - 20));
+            this.y = game.gameHeight - 20 - this.height/2;
+            this.velY = -this.velY/2;
+        }
+        
     }
     
     this.updateState = function(dt){
