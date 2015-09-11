@@ -31,11 +31,16 @@ function gameObject(){
     //Set up game object arrays here
     this.clicks = [];
     this.keys = [];
+    this.buttons = [];
     this.inputs = [];
     this.bombs = [];
     this.bombMap = [];
     this.floors = [];
     this.players = [];
+    
+    //Game Objects
+    this.weapons = {"Bomb":0, "Well":1};
+    this.selectedWeapon = this.weapons.Bomb;
     
     //Add a player
     //this.players.push(new player(this.gameWidth/2, this.gameHeight/2));
@@ -43,6 +48,10 @@ function gameObject(){
     
     //Add a floor
     this.floors.push(new floor(150, 40, 10, 5));
+    
+    //Add Some Buttons
+    this.buttons.push(new roundButton(10, this.gameHeight-10, 5, this.weapons.Bomb));
+    this.buttons.push(new roundButton(this.gameWidth-10, this.gameHeight-10, 5, this.weapons.Well));
                      
     //Time Stuff
     this.lastTime = Date.now();

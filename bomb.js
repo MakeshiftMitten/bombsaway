@@ -1,6 +1,5 @@
 function bomb(x, y, velX, velY, destX, destY){
-    this.x = x;
-    this.y = y;
+    
     
     var slopeTop= destY - y;
     var slopeBottom = destX - x;
@@ -19,6 +18,9 @@ function bomb(x, y, velX, velY, destX, destY){
     //this.velX = Math.cos(deg)*dist*xRef*2;
     //this.velY = Math.sin(deg)*dist*yRef*2;
         
+    this.x = x;
+    this.y = y;
+    
     this.radius = .5;
     
     //Timers and Radii
@@ -43,7 +45,11 @@ function bomb(x, y, velX, velY, destX, destY){
         }        
         else if(this.state  == this.states.Detonated)
         {
-            draw.drawFilledCircle(this.x, this.y, this.radius);            
+            if(game.selectedWeapon == game.weapons.Bomb)
+                draw.drawFilledCircle(this.x, this.y, this.radius);            
+            if(game.selectedWeapon == game.weapons.Well)
+                draw.drawCircle(this.x, this.y, this.radius);            
+            
         }
     }
     
@@ -52,8 +58,7 @@ function bomb(x, y, velX, velY, destX, destY){
         this.currentTimer = this.explodeTimer;
         this.radius = this.explosionBaseRadius;
         
-        var player = game.players[0];
-        //console.log(player);
+        var player = game.players[0];        
         
         var slopeTop= player.y - this.y;
         var slopeBottom = player.x - this.x;
@@ -64,7 +69,7 @@ function bomb(x, y, velX, velY, destX, destY){
         
         var xRef = (player.x - this.x)/Math.abs(player.x - this.x);
         var yRef = -(player.y - this.y)/Math.abs(player.y - this.y);
-        console.log("X+: " + Math.cos(deg)*xRef + " Y+: " + Math.sin(deg)*yRef + " Dist: " + dist); 
+        
         game.players[0].velX += Math.cos(deg)*xRef*this.magnitude/dist/dist;
         game.players[0].velY += Math.sin(deg)*yRef*this.magnitude/dist/dist;
     }

@@ -8,6 +8,15 @@ function mouseClick(){
     //Demo: Add a bomb on click
     //game.bombs.push(new bomb(x, y));    
     //game.bombs.push(new bomb(game.players[0].x, game.players[0].y, 0, 0, game.mouseX, game.mouseY));
+    for(var b = 0; b < game.buttons.length; b++)
+    {
+        if(mouseHitButton(x, y, game.buttons[b]))
+        {
+            game.selectedWeapon = game.buttons[b].type;  
+            return null;
+        }
+    }
+        
     game.bombs[0] = new bomb(game.players[0].x, game.players[0].y, 0, 0, game.mouseX, game.mouseY);
 }
 
@@ -20,9 +29,11 @@ function mouseUp(){
     
     //Demo: Add a bomb on click
     //game.bombs.push(new bomb(x, y));    
-    //game.bombs.push(new bomb(game.players[0].x, game.players[0].y, 0, 0, game.mouseX, game.mouseY));    
-    if(game.bombs[0].state == game.bombs[0].states.Placed){
-        game.bombs[0].explode();
+    //game.bombs.push(new bomb(game.players[0].x, game.players[0].y, 0, 0, game.mouseX, game.mouseY));   
+    if(game.bombs[0]){
+        if(game.bombs[0].state == game.bombs[0].states.Placed){
+            game.bombs[0].explode();
+        }
     }
 }
 

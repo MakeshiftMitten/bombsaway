@@ -11,7 +11,7 @@ function animLoop() {
     
     var dt = (game.nowTime-game.lastTime)/1000;
     update(dt);
-    drawScene();
+    draw.drawScene();
     requestAnimFrame(animLoop);
     game.lastTime = game.nowTime;
     
