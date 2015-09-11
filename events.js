@@ -17,7 +17,7 @@ function mouseClick(){
         }
     }
         
-    game.bombs[0] = new bomb(game.players[0].x, game.players[0].y, 0, 0, game.mouseX, game.mouseY);
+    game.bombs[0] = new bomb(game.players[0].x, game.players[0].y, game.players[0].velX, game.players[0].velY, game.mouseX, game.mouseY);
 }
 
 function mouseUp(){

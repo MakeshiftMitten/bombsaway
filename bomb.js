@@ -11,8 +11,8 @@ function bomb(x, y, velX, velY, destX, destY){
     var xRef = (destX-x)/Math.abs(destX-x);
     var yRef = -(destY-y)/Math.abs(destY-y);
     
-    this.velX = Math.cos(deg)*xRef*10;
-    this.velY = Math.sin(deg)*yRef*10;
+    this.velX = velX + Math.cos(deg)*xRef*10;
+    this.velY = velY + Math.sin(deg)*yRef*10;
     this.magnitude = dist;
     
     //this.velX = Math.cos(deg)*dist*xRef*2;
