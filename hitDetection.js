@@ -31,7 +31,7 @@ function circleHitCircle(circle, circle)
 function mouseHitButton(mouseX, mouseY, button)
 {
     var dist = distance(mouseX, mouseY, button.x, button.y)
-    console.log("Dist: " + dist + " Radius: " + button.radius + " " + (dist < button.radius));
+    //console.log("Dist: " + dist + " Radius: " + button.radius + " " + (dist < button.radius));
     if(dist < button.radius){        
         return true;
     }    

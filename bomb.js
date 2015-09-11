@@ -66,12 +66,13 @@ function bomb(x, y, velX, velY, destX, destY){
         
         var deg = Math.atan(Math.abs(slopeTop/slopeBottom));          
         var dist = Math.sqrt((this.y-player.y)*(this.y-player.y) + (player.x - this.x)*(player.x-this.x));    
+        console.log(dist);
         
         var xRef = (player.x - this.x)/Math.abs(player.x - this.x);
         var yRef = -(player.y - this.y)/Math.abs(player.y - this.y);
         
-        game.players[0].velX += Math.cos(deg)*xRef*this.magnitude/dist/dist;
-        game.players[0].velY += Math.sin(deg)*yRef*this.magnitude/dist/dist;
+        game.players[0].velX += Math.cos(deg)*xRef*this.magnitude/dist;
+        game.players[0].velY += Math.sin(deg)*yRef*this.magnitude/dist;
     }
     
     this.disappear = function(){
