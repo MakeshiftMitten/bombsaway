@@ -33,7 +33,12 @@ function gameObject(){
     this.keys = [];
     this.buttons = [];
     this.inputs = [];
+    
+    this.liveBomb;
+    this.liveWell;
     this.bombs = [];
+    this.wells = [];
+    
     this.bombMap = [];
     this.floors = [];
     this.players = [];

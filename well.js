@@ -1,4 +1,4 @@
-function bomb(x, y, velX, velY, destX, destY){
+function well(x, y, velX, velY, destX, destY){
     
     
     var slopeTop= destY - y;
@@ -27,9 +27,9 @@ function bomb(x, y, velX, velY, destX, destY){
     this.plantTimer = 1;
     this.plantBaseRadius = this.radius;
     
-    this.explodeTimer = 1;
+    this.explodeTimer = .5;
     this.explosionBaseRadius = .5;
-    this.explosionMaxRadius = dist/4;
+    this.explosionMaxRadius = dist/2;
     
     //Start in the plant state
     this.states = {"Placed":0, "Detonated":1, "Dissipated":2};
@@ -68,13 +68,13 @@ function bomb(x, y, velX, velY, destX, destY){
         var dist = Math.sqrt((this.y-player.y)*(this.y-player.y) + (player.x - this.x)*(player.x-this.x));    
         console.log(dist);
         
-        var xRef = (player.x - this.x)/Math.abs(player.x - this.x);
-        var yRef = -(player.y - this.y)/Math.abs(player.y - this.y);
+        //var xRef = (player.x - this.x)/Math.abs(player.x - this.x);
+        //var yRef = -(player.y - this.y)/Math.abs(player.y - this.y);
         
-        game.players[0].velX += Math.cos(deg)*xRef*this.magnitude/dist;
-        game.players[0].velY += Math.sin(deg)*yRef*this.magnitude/dist;
+        //game.players[0].velX += Math.cos(deg)*xRef*this.magnitude/dist;
+        //game.players[0].velY += Math.sin(deg)*yRef*this.magnitude/dist;
         
-        game.bombs.push(this);
+        game.wells.push(this);
     }
     
     this.disappear = function(){
@@ -109,9 +109,11 @@ function bomb(x, y, velX, velY, destX, destY){
         else if(this.state == this.states.Detonated){
             this.currentTimer-=dt;
             //console.log((this.explosionMaxRadius-this.explosionBaseRadius)/2 + " " + this.radius);
-            this.radius += ((this.explosionMaxRadius-this.explosionBaseRadius)*(dt)/this.explodeTimer);
+            if(this.currentTimer > 0){
+                this.radius += ((this.explosionMaxRadius-this.explosionBaseRadius)*(dt));
+            }
             if(this.currentTimer <= 0){
-                this.disappear();
+                //this.disappear();
             }
         }  
     }

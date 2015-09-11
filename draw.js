@@ -14,7 +14,14 @@ function drawLevelCentricObject(){
                 draw.drawText(0, 10, "MOBILE");                             
             else
                 draw.drawText(0, 10, "NOT MOBILE"); 
-
+            
+            if(game.liveBomb)
+                game.liveBomb.draw();
+        
+            if(game.liveWell)
+                game.liveWell.draw();
+        
+        
             for(var b = 0; b < game.bombs.length; b++)
             {
                 game.bombs[b].draw();            
@@ -31,6 +38,9 @@ function drawLevelCentricObject(){
             for(var b = 0; b < game.buttons.length; b++){
                 game.buttons[b].draw();
             }
+        
+            draw.drawText(20, game.gameHeight -10, "[G]ravity: " + game.gravity);
+            
 
             //Scaling rect        
             ctx.stroke()    

@@ -16,8 +16,11 @@ function mouseClick(){
             return null;
         }
     }
-        
-    game.bombs[0] = new bomb(game.players[0].x, game.players[0].y, game.players[0].velX, game.players[0].velY, game.mouseX, game.mouseY);
+    if(game.selectedWeapon == game.weapons.Bomb)    
+        game.liveBomb  = new bomb(game.players[0].x, game.players[0].y, game.players[0].velX, game.players[0].velY, game.mouseX, game.mouseY);
+    else if(game.selectedWeapon == game.weapons.Well)
+        game.liveWell  = new well(game.players[0].x, game.players[0].y, game.players[0].velX, game.players[0].velY, game.mouseX, game.mouseY);
+    //game.bombs[0] = 
 }
 
 function mouseUp(){
@@ -30,9 +33,22 @@ function mouseUp(){
     //Demo: Add a bomb on click
     //game.bombs.push(new bomb(x, y));    
     //game.bombs.push(new bomb(game.players[0].x, game.players[0].y, 0, 0, game.mouseX, game.mouseY));   
+    /*
     if(game.bombs[0]){
         if(game.bombs[0].state == game.bombs[0].states.Placed){
             game.bombs[0].explode();
+        }
+    }
+    */
+    
+    if(game.liveBomb){
+        if(game.liveBomb.state == game.liveBomb.states.Placed){
+            game.liveBomb.explode();
+        }
+    }
+    if(game.liveWell){
+        if(game.liveWell.state == game.liveWell.states.Placed){
+            game.liveWell.explode();
         }
     }
 }

@@ -30,10 +30,24 @@ function update(dt){
             game.bombMap[32] = false;
         }
     }
+    //G
+    if(game.keys[71]){
+        game.gravity++;
+    }
+    //H
+    if(game.keys[72]){
+        game.gravity--;
+    }
 
     for(var p = 0; p < game.players.length; p++){
         game.players[p].update(dt);
     }
+    
+    if(game.liveBomb)
+        game.liveBomb.update(dt);
+    
+    if(game.liveWell)
+        game.liveWell.update(dt);
     
     for(var b = 0; b < game.bombs.length; b++){
         game.bombs[b].update(dt);

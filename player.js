@@ -41,9 +41,22 @@ function player(x, y){
             game.bombs.push(new bomb(this.x, this.y, 30, 50));   
         }
         
-        this.updateState(dt);            
-        this.velY -= game.gravity*game.gravity*dt;                
+        this.updateState(dt);
         
+        var gravMult = 1;
+        for(var w = 0; w < game.wells.length; w++)
+        {
+            var dist = Math.sqrt((game.wells[w].y-this.y)*(game.wells[w].y-this.y) + (this.x - game.wells[w].x)*(this.x-game.wells[w].x));  
+            console.log("dist " + dist);
+            if(dist < game.wells[w].radius)
+            {
+                console.log("reverse grav");
+                gravMult = -1;
+            }
+        }
+        console.log(this.velY + " " + game.gravity + " " + dt);
+        this.velY -= game.gravity*game.gravity*gravMult*dt;                
+        console.log(this.velY);
         
         
         if(game.keys[87]){
