@@ -2,8 +2,11 @@ function mouseClick(){
     game.ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);     
     var gameArea = document.getElementById('gameArea');
     
-    var x = (event.clientX - (window.innerWidth - gameCanvas.width)/2)/gameCanvas.width*game.gameWidth;
-    var y = (event.clientY - (window.innerHeight - gameCanvas.height)/2)/gameCanvas.height*game.gameHeight;
+    //var x = (event.clientX - (window.innerWidth - gameCanvas.width)/2)/gameCanvas.width*game.gameWidth;
+    //var y = (event.clientY - (window.innerHeight - gameCanvas.height)/2)/gameCanvas.height*game.gameHeight;
+    
+    var x = (event.pageX - (window.innerWidth - gameCanvas.width)/2)/gameCanvas.width*game.gameWidth;
+    var y = (event.pageY - (window.innerHeight - gameCanvas.height)/2)/gameCanvas.height*game.gameHeight;
     
     //Demo: Add a bomb on click
     //game.bombs.push(new bomb(x, y));    
@@ -27,8 +30,12 @@ function mouseUp(){
     game.ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);     
     var gameArea = document.getElementById('gameArea');
     
-    var x = (event.clientX - (window.innerWidth - gameCanvas.width)/2)/gameCanvas.width*game.gameWidth;
-    var y = (event.clientY - (window.innerHeight - gameCanvas.height)/2)/gameCanvas.height*game.gameHeight;
+    //var x = (event.clientX - (window.innerWidth - gameCanvas.width)/2)/gameCanvas.width*game.gameWidth;
+    //var y = (event.clientY - (window.innerHeight - gameCanvas.height)/2)/gameCanvas.height*game.gameHeight;
+    
+    
+    var x = (event.pageX - (window.innerWidth - gameCanvas.width)/2)/gameCanvas.width*game.gameWidth;
+    var y = (event.pageY - (window.innerHeight - gameCanvas.height)/2)/gameCanvas.height*game.gameHeight;
     
     //Demo: Add a bomb on click
     //game.bombs.push(new bomb(x, y));    
@@ -80,15 +87,15 @@ window.addEventListener('resize', resizeGame, false);
 window.addEventListener('orientationchange', resizeGame, false);
 
 //if(!game.isMobile()){
-gameCanvas.addEventListener('mousedown', mouseClick, false);
-gameCanvas.addEventListener('mouseup', mouseUp, false);
+//gameCanvas.addEventListener('mousedown', mouseClick, false);
+//gameCanvas.addEventListener('mouseup', mouseUp, false);
 gameCanvas.addEventListener('mousemove', mouseMoved, false);
 window.addEventListener("mousewheel", switchWeapon, false);
 //}
 
 
-//gameCanvas.addEventListener('touchstart', mouseClick, false);
-//gameCanvas.addEventListener('touchend', mouseUp, false);
+gameCanvas.addEventListener('touchstart', mouseClick, false);
+gameCanvas.addEventListener('touchend', mouseUp, false);
 
 window.addEventListener("shake", switchWeapon, false);
 //}
