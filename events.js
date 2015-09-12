@@ -53,6 +53,7 @@ function mouseUp(){
     }
 }
 
+
 function mouseMoved(){
     var x = (event.clientX - (window.innerWidth - gameCanvas.width)/2)/gameCanvas.width*game.gameWidth;
     var y = (event.clientY - (window.innerHeight - gameCanvas.height)/2)/gameCanvas.height*game.gameHeight;
@@ -78,14 +79,19 @@ function keyUp(){
 window.addEventListener('resize', resizeGame, false);
 window.addEventListener('orientationchange', resizeGame, false);
 
-gameCanvas.addEventListener('mousedown', mouseClick, false);
+//if(!game.isMobile()){
+gameCanvas.addEventListener('click', mouseClick, false);
 gameCanvas.addEventListener('mouseup', mouseUp, false);
 gameCanvas.addEventListener('mousemove', mouseMoved, false);
+window.addEventListener("mousewheel", switchWeapon, false);
+//}
 
+if(game.isMobile()){
 gameCanvas.addEventListener('touchstart', mouseClick, false);
 gameCanvas.addEventListener('touchend', mouseUp, false);
-
 window.addEventListener("shake", switchWeapon, false);
-window.addEventListener("mousewheel", switchWeapon, false);
+}
+
+
 window.addEventListener("keydown", keyDown, false);
 window.addEventListener("keyup", keyUp, false);
