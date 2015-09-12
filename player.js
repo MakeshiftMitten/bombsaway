@@ -26,12 +26,14 @@ function player(x, y){
     this.update = function(dt){          
         
         if(game.keys[65]){
-            this.velX = -3;
+            this.velX = -10;
         }
         
         if(game.keys[68]){
-            this.velX = 3;
+            this.velX = 10;
         }
+        
+        
         
         if(game.keys[87]){
             this.velY = 20;
