@@ -80,16 +80,16 @@ window.addEventListener('resize', resizeGame, false);
 window.addEventListener('orientationchange', resizeGame, false);
 
 //if(!game.isMobile()){
-gameCanvas.addEventListener('mousedown', mouseClick, false);
-gameCanvas.addEventListener('mouseup', mouseUp, false);
+//gameCanvas.addEventListener('mousedown', mouseClick, false);
+//gameCanvas.addEventListener('mouseup', mouseUp, false);
 gameCanvas.addEventListener('mousemove', mouseMoved, false);
 window.addEventListener("mousewheel", switchWeapon, false);
 //}
-/*
-if(game.isMobile()){
+
+
 gameCanvas.addEventListener('touchstart', mouseClick, false);
 gameCanvas.addEventListener('touchend', mouseUp, false);
-*/
+
 window.addEventListener("shake", switchWeapon, false);
 //}
 
