@@ -76,6 +76,9 @@ gameCanvas.addEventListener('mousedown', mouseClick, false);
 gameCanvas.addEventListener('mouseup', mouseUp, false);
 gameCanvas.addEventListener('mousemove', mouseMoved, false);
 
+gameCanvas.addEventListener('touchstart', mouseClick, false);
+gameCanvas.addEventListener('touchend', mouseUp, false);
+
 
 window.addEventListener("keydown", keyDown, false);
 window.addEventListener("keyup", keyUp, false);
