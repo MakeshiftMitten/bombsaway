@@ -1,12 +1,14 @@
-function bot(x, y, width, height, fireRate, shotSpeed) {
+function bot(x, y, width, height, fireInterval, shotSpeed, type) {
     this.x = x;
     this.y = y;
     
     this.width = width;
     this.height = height;
     
-    this.fireRate = fireRate;
+    this.fireInterval = fireInterval;
     this.shotSpeed = shotSpeed;
+    
+    this.type = type;
     
     this.shotTimer = 2;
     this.currentTimer = this.shotTimer;
@@ -28,7 +30,13 @@ function bot(x, y, width, height, fireRate, shotSpeed) {
     }       
     
     this.shoot = function(){
-        game.bombs.push(new well(this.x, this.y, 0, 0, game.players[0].x, game.players[0].y));
+        if(this.type == game.weapons.Bomb){
+            game.bombs.push(new bomb(this.x, this.y, 0, 0, game.players[0].x, game.players[0].y));
+        }
+        if(this.type == game.weapons.Well){
+            game.wells.push(new well(this.x, this.y, 0, 0, game.players[0].x, game.players[0].y));
+        }
+                            
     }
         
     

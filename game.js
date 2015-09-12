@@ -69,7 +69,8 @@ function gameObject(){
         
         //Test Garbage
         this.powerups.push(new powerup(20, 20, 5, 5, this.powerupTypes.WellChargeRate));
-        game.bots.push(new bot(6, 6, 2, 2, .5, 10));
+        game.bots.push(new bot(6, 6, 2, 2, .5, 10, this.weapons.Bomb));
+        game.bots.push(new bot(this.gameWidth -10, 6, 2, 2, 2, 10, this.weapons.Well));
 
         //Add a floor
         this.floors.push(new floor(150, 40, 10, 5));
