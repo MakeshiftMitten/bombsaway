@@ -24,23 +24,26 @@ function player(x, y){
     
         
     this.update = function(dt){          
-        
+        //A
         if(game.keys[65]){
             this.velX = -10;
         }
-        
+        //D
         if(game.keys[68]){
             this.velX = 10;
         }
-        
-        
-        
+                    
         if(game.keys[87]){
-            this.velY = 20;
+            this.velY = 10;
+        }
+        
+        if(game.keys[83]){
+            this.velY = -10;
         }
         
         if(game.keys[69]){
-            game.bombs.push(new bomb(this.x, this.y, 30, 50));   
+            this.velY = 0;
+            this.velX = 0;  
         }
         
         this.updateState(dt);
@@ -60,10 +63,11 @@ function player(x, y){
         this.velY -= game.gravity*game.gravity*gravMult*dt;                
         console.log(this.velY);
         
-        
+        /*
         if(game.keys[87]){
             this.velY = 20;
         }
+        */
         var oldX = this.x;
         var oldY = this.y;
         

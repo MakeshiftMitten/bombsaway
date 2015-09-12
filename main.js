@@ -21,6 +21,7 @@ function update(dt){
     
     game.botCooldownTimer -= dt;
     
+    /*
     if(game.keys[32]){
         //game.bombs[32]
         if(!game.bombMap[32]){                        
@@ -33,6 +34,7 @@ function update(dt){
             game.bombMap[32] = false;
         }
     }
+    */
     //G
     if(game.keys[71]){
         game.gravity++;
