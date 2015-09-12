@@ -2,11 +2,11 @@ function mouseClick(){
     game.ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);     
     var gameArea = document.getElementById('gameArea');
     
-    //var x = (event.clientX - (window.innerWidth - gameCanvas.width)/2)/gameCanvas.width*game.gameWidth;
-    //var y = (event.clientY - (window.innerHeight - gameCanvas.height)/2)/gameCanvas.height*game.gameHeight;
+    var x = (event.clientX - (window.innerWidth - gameCanvas.width)/2)/gameCanvas.width*game.gameWidth;
+    var y = (event.clientY - (window.innerHeight - gameCanvas.height)/2)/gameCanvas.height*game.gameHeight;
     
-    var x = (event.pageX - (window.innerWidth - gameCanvas.width)/2)/gameCanvas.width*game.gameWidth;
-    var y = (event.pageY - (window.innerHeight - gameCanvas.height)/2)/gameCanvas.height*game.gameHeight;
+    //var x = (event.pageX - (window.innerWidth - gameCanvas.width)/2)/gameCanvas.width*game.gameWidth;
+    //var y = (event.pageY - (window.innerHeight - gameCanvas.height)/2)/gameCanvas.height*game.gameHeight;
     
     game.players[x].velX += 5;
     
@@ -32,12 +32,12 @@ function mouseUp(){
     game.ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);     
     var gameArea = document.getElementById('gameArea');
     
-    //var x = (event.clientX - (window.innerWidth - gameCanvas.width)/2)/gameCanvas.width*game.gameWidth;
-    //var y = (event.clientY - (window.innerHeight - gameCanvas.height)/2)/gameCanvas.height*game.gameHeight;
+    var x = (event.clientX - (window.innerWidth - gameCanvas.width)/2)/gameCanvas.width*game.gameWidth;
+    var y = (event.clientY - (window.innerHeight - gameCanvas.height)/2)/gameCanvas.height*game.gameHeight;
     
     
-    var x = (event.pageX - (window.innerWidth - gameCanvas.width)/2)/gameCanvas.width*game.gameWidth;
-    var y = (event.pageY - (window.innerHeight - gameCanvas.height)/2)/gameCanvas.height*game.gameHeight;
+    //var x = (event.pageX - (window.innerWidth - gameCanvas.width)/2)/gameCanvas.width*game.gameWidth;
+    //var y = (event.pageY - (window.innerHeight - gameCanvas.height)/2)/gameCanvas.height*game.gameHeight;
     
     
     //Demo: Add a bomb on click
