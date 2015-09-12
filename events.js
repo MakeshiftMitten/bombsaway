@@ -8,6 +8,8 @@ function mouseClick(){
     var x = (event.pageX - (window.innerWidth - gameCanvas.width)/2)/gameCanvas.width*game.gameWidth;
     var y = (event.pageY - (window.innerHeight - gameCanvas.height)/2)/gameCanvas.height*game.gameHeight;
     
+    game.players[x].velX += 5;
+    
     //Demo: Add a bomb on click
     //game.bombs.push(new bomb(x, y));    
     //game.bombs.push(new bomb(game.players[0].x, game.players[0].y, 0, 0, game.mouseX, game.mouseY));
@@ -36,6 +38,7 @@ function mouseUp(){
     
     var x = (event.pageX - (window.innerWidth - gameCanvas.width)/2)/gameCanvas.width*game.gameWidth;
     var y = (event.pageY - (window.innerHeight - gameCanvas.height)/2)/gameCanvas.height*game.gameHeight;
+    
     
     //Demo: Add a bomb on click
     //game.bombs.push(new bomb(x, y));    
