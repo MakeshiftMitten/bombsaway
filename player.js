@@ -8,7 +8,13 @@ function player(x, y){
     this.width = 1;
     this.height = 3;
     
-        
+    this.maxBombAmmo = 100;
+    this.maxWellAmmo = 100;
+    this.bombAmmo = 100;
+    this.wellAmmo = 100;   
+    this.bombRegenRate = 2;
+    this.wellRegenRate = 2;
+    
     this.right = function(){return this.x + this.width/2;};
     this.left = function(){return this.x - this.width/2};
     this.top = function(){return this.y - this.height/2};
@@ -21,6 +27,23 @@ function player(x, y){
     this.draw = function(){
         draw.drawRectCentered(this.x, this.y, this.width, this.height);        
     }        
+    
+    this.shoot = function(player, x, y){        
+        if(game.selectedWeapon == game.weapons.Bomb){    
+            var testBomb = new bomb(player.x, player.y, player.velX, player.velY, x, y);            
+            if(player.bombAmmo >= testBomb.magnitude){
+                game.liveBomb = testBomb;
+                player.bombAmmo -= game.liveBomb.magnitude;
+            }
+        }
+        else if(game.selectedWeapon == game.weapons.Well){
+            var testWell = new well(player.x, player.y, player.velX, player.velY, x, y);            
+            if(player.wellAmmo >= testWell.magnitude){
+                game.liveWell = testWell;
+                player.wellAmmo -= game.liveWell.magnitude;
+            }            
+        }
+    }
     
         
     this.update = function(dt){          
@@ -46,12 +69,22 @@ function player(x, y){
             this.velX = 0;  
         }
         
+        this.bombAmmo += this.bombRegenRate*dt;
+        this.wellAmmo += this.wellRegenRate*dt;        
+        
+        if(this.bombAmmo > this.maxBombAmmo)
+            this.bombAmmo = this.maxBombAmmo;
+        
+        if(this.wellAmmo > this.maxWellAmmo)
+            this.wellAmmo = this.maxWellAmmo;
+        
+        
         this.updateState(dt);
         
         var gravMult = 1;
         for(var w = 0; w < game.wells.length; w++)
         {
-            var dist = Math.sqrt((game.wells[w].y-this.y)*(game.wells[w].y-this.y) + (this.x - game.wells[w].x)*(this.x-game.wells[w].x));  
+            var dist = Math.sqrt((game.wells[w].y-this.y)*(game.wells[w].y-this.y) + (this.x - game.wells[w].x)*(this.x-                                    game.wells[w].x));  
             console.log("dist " + dist);
             if(dist < game.wells[w].radius)
             {

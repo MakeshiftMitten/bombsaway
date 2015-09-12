@@ -49,7 +49,15 @@ function drawLevelCentricObject(){
                 game.buttons[b].draw();
             }
         
+            for(var m = 0; m < game.meters.length; m++){
+                game.meters[m].draw();
+            }
+        
             draw.drawText(20, game.gameHeight -10, "[G]ravity: " + game.gravity);
+            draw.drawText(20, game.gameHeight - 11, "Level: " + game.level);
+            
+            
+        
             
 
             //Scaling rect        
@@ -75,6 +83,20 @@ function drawLevelCentricObject(){
 
         ctx.rect(gameXToCanvasX(gameX-gameWidth/2), gameYToCanvasY(gameY-gameHeight/2), gameXToCanvasX(gameWidth), gameYToCanvasY(gameHeight));
         ctx.stroke();
+    }
+    
+    this.drawFilledRectCentered = function(gameX, gameY, gameWidth, gameHeight, color)
+    {
+        var gameCanvas = document.getElementById('gameCanvas');
+        var ctx= gameCanvas.getContext("2d");   
+        ctx.save();
+        ctx.beginPath();
+        ctx.fillStyle = color;
+        ctx.rect(gameXToCanvasX(gameX-gameWidth/2), gameYToCanvasY(gameY-gameHeight/2), gameXToCanvasX(gameWidth), gameYToCanvasY(gameHeight));
+        ctx.stroke();
+        ctx.fill();
+        ctx.closePath();
+        ctx.restore();
     }
     
     this.drawCircle = function(gameX, gameY, radius, color)

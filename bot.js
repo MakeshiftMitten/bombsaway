@@ -8,6 +8,9 @@ function bot(x, y, width, height, fireRate, shotSpeed) {
     this.fireRate = fireRate;
     this.shotSpeed = shotSpeed;
     
+    this.shotTimer = 2;
+    this.currentTimer = this.shotTimer;
+    
     this.velX = 4;
     this.velY = 4;
     
@@ -25,7 +28,7 @@ function bot(x, y, width, height, fireRate, shotSpeed) {
     }       
     
     this.shoot = function(){
-           
+        game.bombs.push(new well(this.x, this.y, 0, 0, game.players[0].x, game.players[0].y));
     }
         
     
@@ -72,7 +75,11 @@ function bot(x, y, width, height, fireRate, shotSpeed) {
     }
     
     this.updateState = function(dt){
-        
+        this.currentTimer -= dt;
+        if (this.currentTimer <= 0){
+            this.shoot();
+            this.currentTimer = this.shotTimer;
+        }
     }
 }
 

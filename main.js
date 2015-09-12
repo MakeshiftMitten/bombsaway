@@ -20,7 +20,12 @@ function animLoop() {
 function update(dt){    
     
     game.botCooldownTimer -= dt;
-    
+    game.currentLevelTimer -= dt;
+    if(game.currentLevelTimer <= 0)
+    {
+        game.levelUp();
+    }
+        
     /*
     if(game.keys[32]){
         //game.bombs[32]
@@ -74,6 +79,10 @@ function update(dt){
         game.wells[w].update(dt);
     }
     
+    for(var m = 0; m < game.meters.length; m++){
+        game.meters[m].update(dt);   
+    }                
+    
     clearSpentBombsAndWells();
 }
 
@@ -87,6 +96,7 @@ function clearSpentBombsAndWells(){
 }
 
 game = new gameObject();
+game.init();
 draw = new drawLevelCentricObject();
 //draw = new drawPlayerCentricObject();
 resizeGame();

@@ -28,10 +28,15 @@ function gameObject(){
     //this.gravity = 10;
     this.gravity = 0;
     
+    //Game Settings
+    this.level = 1;
+    
+    
     //Set up game object arrays here
     this.clicks = [];
     this.keys = [];
     this.buttons = [];
+    this.meters = [];
     this.inputs = [];
     
     this.liveBomb;
@@ -46,23 +51,39 @@ function gameObject(){
     
     //Timers
     this.botCooldownTimer = 1;
+    this.levelTime = 10;
+    this.currentLevelTimer = 0;        
     
     //Game Objects
     this.weapons = {"Bomb":0, "Well":1};
     this.selectedWeapon = this.weapons.Bomb;
     
-    //Add a player
-    //this.players.push(new player(this.gameWidth/2, this.gameHeight/2));
-    this.players.push(new player(this.gameWidth/2, this.gameHeight/2));
+    this.meterTypes = {"Level":0, "Bomb":1, "Well":2};    
     
-    //Add a floor
-    this.floors.push(new floor(150, 40, 10, 5));
+    this.init = function(){
+        //Add a player
+        //this.players.push(new player(this.gameWidth/2, this.gameHeight/2));
+        this.players.push(new player(this.gameWidth/2, this.gameHeight/2));
+
+        //Add a floor
+        this.floors.push(new floor(150, 40, 10, 5));
+
+        //Add Some Buttons
+        this.buttons.push(new roundButton(this.gameWidth/2+10, this.gameHeight-10, 5, this.weapons.Bomb, "#000000"));
+        this.buttons.push(new roundButton(this.gameWidth/2-10, this.gameHeight-10, 5, this.weapons.Well, "#990099"));
+
+        //Add Meters 
+        this.meters.push(new meter(this.gameWidth/2 + 2.5, this.gameHeight - 10, this.meterTypes.Bomb));
+        this.meters.push(new meter(this.gameWidth/2 - 2.5, this.gameHeight - 10, this.meterTypes.Well));
+        this.meters.push(new meter(this.gameWidth/2, this.gameHeight - 17.5, this.meterTypes.Level));
+
+        //Time Stuff
+        this.lastTime = Date.now();
+        this.nowTime = this.lastTime;
+    }
     
-    //Add Some Buttons
-    this.buttons.push(new roundButton(10, this.gameHeight-10, 5, this.weapons.Bomb, "#000000"));
-    this.buttons.push(new roundButton(this.gameWidth-10, this.gameHeight-10, 5, this.weapons.Well, "#990099"));
-                     
-    //Time Stuff
-    this.lastTime = Date.now();
-    this.nowTime = this.lastTime;
+    this.levelUp = function(){
+        this.level++;
+        this.currentLevelTimer = this.levelTime;
+    }
 }

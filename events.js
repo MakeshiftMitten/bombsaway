@@ -8,7 +8,7 @@ function mouseClick(){
     //var x = (event.pageX - (window.innerWidth - gameCanvas.width)/2)/gameCanvas.width*game.gameWidth;
     //var y = (event.pageY - (window.innerHeight - gameCanvas.height)/2)/gameCanvas.height*game.gameHeight;
     
-    game.players[0].velX = 5;
+    //game.players[0].velX = 5;
     
     //Demo: Add a bomb on click
     //game.bombs.push(new bomb(x, y));    
@@ -21,10 +21,10 @@ function mouseClick(){
             return null;
         }
     }
-    if(game.selectedWeapon == game.weapons.Bomb)    
-        game.liveBomb  = new bomb(game.players[0].x, game.players[0].y, game.players[0].velX, game.players[0].velY, x, y);
-    else if(game.selectedWeapon == game.weapons.Well)
-        game.liveWell  = new well(game.players[0].x, game.players[0].y, game.players[0].velX, game.players[0].velY, x, y);
+    
+    game.players[0].shoot(game.players[0], x, y);
+    
+    
     //game.bombs[0] = 
 }
 
