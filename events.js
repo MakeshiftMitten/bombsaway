@@ -17,9 +17,9 @@ function mouseClick(){
         }
     }
     if(game.selectedWeapon == game.weapons.Bomb)    
-        game.liveBomb  = new bomb(game.players[0].x, game.players[0].y, game.players[0].velX, game.players[0].velY, game.mouseX, game.mouseY);
+        game.liveBomb  = new bomb(game.players[0].x, game.players[0].y, game.players[0].velX, game.players[0].velY, x, y);
     else if(game.selectedWeapon == game.weapons.Well)
-        game.liveWell  = new well(game.players[0].x, game.players[0].y, game.players[0].velX, game.players[0].velY, game.mouseX, game.mouseY);
+        game.liveWell  = new well(game.players[0].x, game.players[0].y, game.players[0].velX, game.players[0].velY, x, y);
     //game.bombs[0] = 
 }
 
@@ -80,17 +80,18 @@ window.addEventListener('resize', resizeGame, false);
 window.addEventListener('orientationchange', resizeGame, false);
 
 //if(!game.isMobile()){
-gameCanvas.addEventListener('click', mouseClick, false);
+gameCanvas.addEventListener('mousedown', mouseClick, false);
 gameCanvas.addEventListener('mouseup', mouseUp, false);
 gameCanvas.addEventListener('mousemove', mouseMoved, false);
 window.addEventListener("mousewheel", switchWeapon, false);
 //}
-
+/*
 if(game.isMobile()){
 gameCanvas.addEventListener('touchstart', mouseClick, false);
 gameCanvas.addEventListener('touchend', mouseUp, false);
+*/
 window.addEventListener("shake", switchWeapon, false);
-}
+//}
 
 
 window.addEventListener("keydown", keyDown, false);
