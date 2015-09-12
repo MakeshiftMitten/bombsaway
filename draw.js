@@ -37,6 +37,10 @@ function drawLevelCentricObject(){
                 game.players[p].draw();
             }
         
+            for(var p = 0; p < game.powerups.length; p++){
+                game.powerups[p].draw();
+            }
+        
             for(var b = 0; b < game.bots.length; b++){
                 game.bots[b].draw();
             }
@@ -57,7 +61,7 @@ function drawLevelCentricObject(){
             draw.drawText(20, game.gameHeight - 11, "Level: " + game.level);
             
             
-        
+            
             
 
             //Scaling rect        

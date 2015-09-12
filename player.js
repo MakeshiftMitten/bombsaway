@@ -92,9 +92,19 @@ function player(x, y){
                 gravMult = -1;
             }
         }
-        console.log(this.velY + " " + game.gravity + " " + dt);
-        this.velY -= game.gravity*game.gravity*gravMult*dt;                
-        console.log(this.velY);
+        
+        for(var w = 0; w < game.powerups.length; w++)
+        {
+            var dist = distance(game.powerups[w].x, game.powerups[w].y, this.x, this.y)
+            if(dist < game.powerups[w].radius)
+            {                
+                console.log("hit powerup!");
+                game.powerups.splice([w], 1);
+                w--;
+            }
+        }        
+        
+        this.velY -= game.gravity*game.gravity*gravMult*dt;                        
         
         /*
         if(game.keys[87]){

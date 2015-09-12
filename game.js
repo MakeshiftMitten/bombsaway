@@ -43,6 +43,7 @@ function gameObject(){
     this.liveWell;
     this.bombs = [];
     this.wells = [];
+    this.powerups = [];
     
     this.bombMap = [];
     this.floors = [];
@@ -59,11 +60,16 @@ function gameObject(){
     this.selectedWeapon = this.weapons.Bomb;
     
     this.meterTypes = {"Level":0, "Bomb":1, "Well":2};    
+    this.powerupTypes = {"WellChargeRate": 0};
     
     this.init = function(){
         //Add a player
         //this.players.push(new player(this.gameWidth/2, this.gameHeight/2));
         this.players.push(new player(this.gameWidth/2, this.gameHeight/2));
+        
+        //Test Garbage
+        this.powerups.push(new powerup(20, 20, 5, 5, this.powerupTypes.WellChargeRate));
+        game.bots.push(new bot(6, 6, 2, 2, .5, 10));
 
         //Add a floor
         this.floors.push(new floor(150, 40, 10, 5));

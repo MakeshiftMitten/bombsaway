@@ -61,6 +61,10 @@ function update(dt){
         game.players[p].update(dt);
     }
     
+    for(var p = 0; p < game.powerups.length; p++){
+        game.powerups[p].update(dt);
+    }
+    
     for(var b = 0; b < game.bots.length; b++){
         game.bots[b].update(dt);           
     }
