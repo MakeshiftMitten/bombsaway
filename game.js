@@ -2,7 +2,16 @@ function gameObject(){
     
     //Game Dimensions in Game Units. I think of them as meters, but this is what you will do all of your position updating in. 
     this.gameWidth = 100;
-    this.gameHeight = 100;        
+    this.gameHeight = 100; 
+    
+    //http://www.colourlovers.com/palette/600798/(_t_r_a_v_e_l_e_r_)?widths=0
+    //http://www.colourlovers.com/palette/3348506/Interstellar
+    //http://www.colourlovers.com/palette/2450686/Space_Age_Love_Song
+    //var SpaceAgeLoveSong = {"Background":"#1D0C20", };
+    //var Interstellar = {"Background":"  }
+    var FloatingInSpace = {"Background":"#5D6F72", "Ship":"#80CCD8", "Enemy":"#CEF5FB", "Bomb":"#343A3B", "Well":"#8AAAAF"}
+    
+    this.colors = FloatingInSpace;
     
     //Canvas Context for easy referencing
     this.Canvas = document.getElementById('gameCanvas');
@@ -23,6 +32,8 @@ function gameObject(){
             return false;
           }
     }
+    
+    
     
     //Physics Variables
     //this.gravity = 10;

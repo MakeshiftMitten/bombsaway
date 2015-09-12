@@ -26,7 +26,7 @@ function bot(x, y, width, height, fireInterval, shotSpeed, type) {
     }
     
     this.draw = function(){
-        draw.drawRectCentered(this.x, this.y, this.width, this.height);        
+        draw.drawFilledRectCentered(this.x, this.y, this.width, this.height, game.colors.Bomb);        
     }       
     
     this.shoot = function(){
@@ -35,8 +35,7 @@ function bot(x, y, width, height, fireInterval, shotSpeed, type) {
         }
         if(this.type == game.weapons.Well){
             game.wells.push(new well(this.x, this.y, 0, 0, game.players[0].x, game.players[0].y));
-        }
-                            
+        }                            
     }
         
     

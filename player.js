@@ -25,7 +25,7 @@ function player(x, y){
     }
     
     this.draw = function(){
-        draw.drawRectCentered(this.x, this.y, this.width, this.height);        
+        draw.drawFilledRectCentered(this.x, this.y, this.width, this.height, game.colors.Ship);        
     }        
     
     this.shoot = function(player, x, y){        

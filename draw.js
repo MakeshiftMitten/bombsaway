@@ -7,6 +7,7 @@ function drawLevelCentricObject(){
 
             //Bounding Rect    
             ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height); 
+            draw.drawFilledRectCentered(game.gameWidth/2, game.gameHeight/2, game.gameWidth, game.gameHeight, game.colors.Background);
             ctx.beginPath();
             ctx.rect(0, 0, gameCanvas.width, gameCanvas.height);             
             ctx.rect(0, 0, gameCanvas.width, gameCanvas.height - gameXToCanvasX(20));       
@@ -80,13 +81,17 @@ function drawLevelCentricObject(){
         ctx.stroke();
     }
 
-    this.drawRectCentered = function(gameX, gameY, gameWidth, gameHeight)
+    this.drawRectCentered = function(gameX, gameY, gameWidth, gameHeight, color)
     {
+        
         var gameCanvas = document.getElementById('gameCanvas');
         var ctx= gameCanvas.getContext("2d");   
-
+        ctx.save();
+        ctx.beginPath();
         ctx.rect(gameXToCanvasX(gameX-gameWidth/2), gameYToCanvasY(gameY-gameHeight/2), gameXToCanvasX(gameWidth), gameYToCanvasY(gameHeight));
         ctx.stroke();
+        ctx.closePath();
+        ctx.restore();
     }
     
     this.drawFilledRectCentered = function(gameX, gameY, gameWidth, gameHeight, color)

@@ -43,11 +43,11 @@ function meter(x, y, type){
     this.draw = function(){
         
         if(this.orientation == this.orientations.Vertical){
-            draw.drawRectCentered(this.x, this.y, this.width, this.height);
+            draw.drawRectCentered(this.x, this.y, this.width, this.height, "#000000");
             draw.drawFilledRectCentered(this.x, this.y, this.width, this.height*(this.currentLevel/this.maxLevel), "#000000"); 
         }
         else if(this.orientation == this.orientations.Horizontal){
-            draw.drawRectCentered(this.x, this.y, this.width, this.height);
+            draw.drawRectCentered(this.x, this.y, this.width, this.height, "#000000");
             draw.drawFilledRectCentered(this.x, this.y, this.width*(1-this.currentLevel/this.maxLevel), this.height, "#000000");    
         }
         
