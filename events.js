@@ -87,8 +87,8 @@ window.addEventListener("mousewheel", switchWeapon, false);
 //}
 
 
-gameCanvas.addEventListener('touchstart', mouseClick, false);
-gameCanvas.addEventListener('touchend', mouseUp, false);
+//gameCanvas.addEventListener('touchstart', mouseClick, false);
+//gameCanvas.addEventListener('touchend', mouseUp, false);
 
 window.addEventListener("shake", switchWeapon, false);
 //}
