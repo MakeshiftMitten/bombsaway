@@ -61,6 +61,12 @@ function mouseMoved(){
     game.mouseY = y;
 }
 
+function switchWeapon(){
+    game.selectedWeapon++
+    game.selectedWeapon %= 2;
+}
+    
+
 function keyDown(){ 
   game.keys[event.keyCode] = true;
 }
@@ -79,6 +85,7 @@ gameCanvas.addEventListener('mousemove', mouseMoved, false);
 gameCanvas.addEventListener('touchstart', mouseClick, false);
 gameCanvas.addEventListener('touchend', mouseUp, false);
 
-
+window.addEventListener("shake", switchWeapon, false);
+window.addEventListener("mousewheel", switchWeapon, false);
 window.addEventListener("keydown", keyDown, false);
 window.addEventListener("keyup", keyUp, false);
