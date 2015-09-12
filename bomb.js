@@ -71,6 +71,26 @@ function bomb(x, y, velX, velY, destX, destY){
         game.players[0].velX += Math.cos(deg)*xRef*this.magnitude/dist;
         game.players[0].velY += Math.sin(deg)*yRef*this.magnitude/dist;
         
+        for(var b = 0; b < game.bots.length; b++){
+            
+            var bot = game.bots[b];
+            
+            var slopeTop= bot.y - this.y;
+            var slopeBottom = bot.x - this.x;
+            var slope = slopeTop/slopeBottom;
+
+            var deg = Math.atan(Math.abs(slopeTop/slopeBottom));          
+            var dist = Math.sqrt((this.y-bot.y)*(this.y-bot.y) + (bot.x - this.x)*(bot.x-this.x));    
+            console.log(dist);
+
+            var xRef = (bot.x - this.x)/Math.abs(bot.x - this.x);
+            var yRef = -(bot.y - this.y)/Math.abs(bot.y - this.y);
+            
+            game.bots[b].velX += Math.cos(deg)*xRef*this.magnitude/dist;
+            game.bots[b].velY += Math.sin(deg)*yRef*this.magnitude/dist;
+            
+        }
+        
         game.bombs.push(this);
     }
     

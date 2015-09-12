@@ -18,6 +18,9 @@ function animLoop() {
 }
 
 function update(dt){    
+    
+    game.botCooldownTimer -= dt;
+    
     if(game.keys[32]){
         //game.bombs[32]
         if(!game.bombMap[32]){                        
@@ -38,9 +41,21 @@ function update(dt){
     if(game.keys[72]){
         game.gravity--;
     }
+    //J
+    if(game.keys[74]){
+        if(game.botCooldownTimer <= 0){            
+            game.bots.push(new bot(6, 6, 2, 2, .5, 10));
+            game.botCooldownTimer = 1;
+        }
+        game.keys[74] = false;
+    }
 
     for(var p = 0; p < game.players.length; p++){
         game.players[p].update(dt);
+    }
+    
+    for(var b = 0; b < game.bots.length; b++){
+        game.bots[b].update(dt);           
     }
     
     if(game.liveBomb)
@@ -55,6 +70,17 @@ function update(dt){
     
     for(var w = 0; w < game.wells.length; w++){
         game.wells[w].update(dt);
+    }
+    
+    clearSpentBombsAndWells();
+}
+
+function clearSpentBombsAndWells(){    
+    for(var w = 0; w < game.wells.length; w++){
+        if(game.wells[w].state == game.wells[w].states.Dissipated){
+            game.wells.splice(w, 1);
+            w-=1;
+        }            
     }
 }
 

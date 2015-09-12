@@ -42,6 +42,10 @@ function gameObject(){
     this.bombMap = [];
     this.floors = [];
     this.players = [];
+    this.bots = [];
+    
+    //Timers
+    this.botCooldownTimer = 1;
     
     //Game Objects
     this.weapons = {"Bomb":0, "Well":1};
@@ -55,8 +59,8 @@ function gameObject(){
     this.floors.push(new floor(150, 40, 10, 5));
     
     //Add Some Buttons
-    this.buttons.push(new roundButton(10, this.gameHeight-10, 5, this.weapons.Bomb));
-    this.buttons.push(new roundButton(this.gameWidth-10, this.gameHeight-10, 5, this.weapons.Well));
+    this.buttons.push(new roundButton(10, this.gameHeight-10, 5, this.weapons.Bomb, "#000000"));
+    this.buttons.push(new roundButton(this.gameWidth-10, this.gameHeight-10, 5, this.weapons.Well, "#990099"));
                      
     //Time Stuff
     this.lastTime = Date.now();

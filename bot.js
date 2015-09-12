@@ -1,14 +1,16 @@
-function player(x, y){
+function bot(x, y, width, height, fireRate, shotSpeed) {
     this.x = x;
     this.y = y;
     
-    this.velX = 0;
-    this.velY = 0;
+    this.width = width;
+    this.height = height;
     
-    this.width = 1;
-    this.height = 3;
+    this.fireRate = fireRate;
+    this.shotSpeed = shotSpeed;
     
-        
+    this.velX = 4;
+    this.velY = 4;
+    
     this.right = function(){return this.x + this.width/2;};
     this.left = function(){return this.x - this.width/2};
     this.top = function(){return this.y - this.height/2};
@@ -20,26 +22,15 @@ function player(x, y){
     
     this.draw = function(){
         draw.drawRectCentered(this.x, this.y, this.width, this.height);        
-    }        
+    }       
+    
+    this.shoot = function(){
+           
+    }
+        
     
         
-    this.update = function(dt){          
-        
-        if(game.keys[65]){
-            this.velX = -3;
-        }
-        
-        if(game.keys[68]){
-            this.velX = 3;
-        }
-        
-        if(game.keys[87]){
-            this.velY = 20;
-        }
-        
-        if(game.keys[69]){
-            game.bombs.push(new bomb(this.x, this.y, 30, 50));   
-        }
+    this.update = function(dt){                      
         
         this.updateState(dt);
         
@@ -56,25 +47,10 @@ function player(x, y){
         }
         console.log(this.velY + " " + game.gravity + " " + dt);
         this.velY -= game.gravity*game.gravity*gravMult*dt;                
-        console.log(this.velY);
-        
-        
-        if(game.keys[87]){
-            this.velY = 20;
-        }
-        var oldX = this.x;
-        var oldY = this.y;
+        console.log(this.velY);        
         
         this.x += this.velX*dt;
-        this.y -= this.velY*dt;   
-        
-        if(playerFloorHit(this, game.floors[0])){
-            //if(
-            this.velY = 0;
-            //this.x = oldX;
-            this.y = game.floors[0].top()-this.height/2;
-            //this.y = game.floors[0].top() - this.height/2;
-        }
+        this.y -= this.velY*dt;                   
         
         if(this.x-this.width/2 < 0){
             this.x = this.width/2;
@@ -92,9 +68,11 @@ function player(x, y){
             this.y = this.height/2;
             this.velY = -this.velY/2;
         }
+        
     }
     
     this.updateState = function(dt){
         
     }
 }
+

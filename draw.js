@@ -36,6 +36,10 @@ function drawLevelCentricObject(){
             for(var p = 0; p < game.players.length; p++){
                 game.players[p].draw();
             }
+        
+            for(var b = 0; b < game.bots.length; b++){
+                game.bots[b].draw();
+            }
 
             for(var d = 0; d < game.floors.length; d++){
                 game.floors[d].draw();
@@ -72,22 +76,29 @@ function drawLevelCentricObject(){
         ctx.rect(gameXToCanvasX(gameX-gameWidth/2), gameYToCanvasY(gameY-gameHeight/2), gameXToCanvasX(gameWidth), gameYToCanvasY(gameHeight));
         ctx.stroke();
     }
-
-    this.drawCircle = function(gameX, gameY, radius)
+    
+    this.drawCircle = function(gameX, gameY, radius, color)
     {    
         var ctx= game.ctx;// gameCanvas.getContext("2d");  
         ctx.beginPath();
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2;
         ctx.arc(gameXToCanvasX(gameX), gameYToCanvasY(gameY), gameXToCanvasX(radius), 0, 2 * Math.PI, false);
         ctx.stroke();    
+        ctx.restore();
     }
 
-    this.drawFilledCircle = function(gameX, gameY, radius)
+    this.drawFilledCircle = function(gameX, gameY, radius, color)
     { 
         var ctx= game.ctx;// gameCanvas.getContext("2d");  
+        ctx.save();
         ctx.beginPath();
+        ctx.fillStyle = color;
         ctx.arc(gameXToCanvasX(gameX), gameYToCanvasY(gameY), gameXToCanvasX(radius), 0, 2 * Math.PI, false);
         ctx.fill();
         ctx.stroke();    
+        ctx.restore();
     }
 
     this.drawText = function(gameX, gameY, text)
@@ -119,10 +130,11 @@ function drawPlayerCentricObject(){
         ctx.stroke();
     }
 
-    this.drawCircle = function(gameX, gameY, radius)
+    this.drawCircle = function(gameX, gameY, radius, color)
     {    
         var ctx= game.ctx;// gameCanvas.getContext("2d");  
         ctx.beginPath();
+        ctx.fillStyle = color;
         ctx.arc(gameXToCanvasX(gameX), gameYToCanvasY(gameY), gameXToCanvasX(radius), 0, 2 * Math.PI, false);
         ctx.stroke();    
     }
