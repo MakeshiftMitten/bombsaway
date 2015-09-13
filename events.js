@@ -1,4 +1,4 @@
-function mouseClick(){
+function mouseClick(event){
     game.ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);     
     var gameArea = document.getElementById('gameArea');
     
@@ -28,7 +28,7 @@ function mouseClick(){
     //game.bombs[0] = 
 }
 
-function mouseUp(){
+function mouseUp(event){
     game.ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);     
     var gameArea = document.getElementById('gameArea');
     
@@ -64,7 +64,7 @@ function mouseUp(){
 }
 
 
-function mouseMoved(){
+function mouseMoved(event){
     var x = (event.clientX - (window.innerWidth - gameCanvas.width)/2)/gameCanvas.width*game.gameWidth;
     var y = (event.clientY - (window.innerHeight - gameCanvas.height)/2)/gameCanvas.height*game.gameHeight;
     
@@ -72,17 +72,17 @@ function mouseMoved(){
     game.mouseY = y;
 }
 
-function switchWeapon(){
+function switchWeapon(event){
     game.selectedWeapon++
     game.selectedWeapon %= 2;
 }
     
 
-function keyDown(){ 
+function keyDown(event){ 
   game.keys[event.keyCode] = true;
 }
 
-function keyUp(){ 
+function keyUp(event){ 
   game.keys[event.keyCode] = false;
 }
 
@@ -93,7 +93,7 @@ window.addEventListener('orientationchange', resizeGame, false);
 gameCanvas.addEventListener('mousedown', mouseClick, false);
 gameCanvas.addEventListener('mouseup', mouseUp, false);
 gameCanvas.addEventListener('mousemove', mouseMoved, false);
-window.addEventListener("mousewheel", switchWeapon, false);
+window.addEventListener("wheel", switchWeapon, false);
 //}
 
 
