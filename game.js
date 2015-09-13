@@ -38,8 +38,8 @@ function gameObject(){
     this.gravity = 0;
     
     //Game Settings
-    this.level = 1;
-    
+    this.level = 0;
+    this.score = 0;
     
     //Set up game object arrays here
     this.clicks = [];
@@ -93,8 +93,8 @@ function gameObject(){
         this.buttons.push(new roundButton(this.gameWidth/2-10, this.gameHeight-10, 5, this.weapons.Well, "#990099"));
 
         //Add Meters 
-        this.meters.push(new meter(this.gameWidth/2 + 2.5, this.gameHeight - 10, this.meterTypes.Bomb));
-        this.meters.push(new meter(this.gameWidth/2 - 2.5, this.gameHeight - 10, this.meterTypes.Well));
+        this.meters.push(new meter(this.gameWidth/2 + 17.5, this.gameHeight - 10, this.meterTypes.Bomb));
+        this.meters.push(new meter(this.gameWidth/2 - 17.5, this.gameHeight - 10, this.meterTypes.Well));
         this.meters.push(new meter(this.gameWidth/2, this.gameHeight - 10, this.meterTypes.Life));        
         this.meters.push(new meter(this.gameWidth/2, this.gameHeight - 17.5, this.meterTypes.Level));
         
@@ -110,5 +110,6 @@ function gameObject(){
         this.bots = [];
         this.generators = [];
         game.generators.push(new shipGenerator(6, 6, 3, 3, 5, this.weapons.Bomb));
-    }
+    }        
+        
 }

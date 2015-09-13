@@ -25,7 +25,12 @@ function update(dt){
     {
         game.levelUp();
     }
-        
+    
+    if(game.keys[80]){
+        console.log("new!");
+        game = new gameObject();
+        game.init();
+    }
     /*
     if(game.keys[32]){
         //game.bombs[32]

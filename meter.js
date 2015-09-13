@@ -44,21 +44,29 @@ function meter(x, y, type){
         if(this.type == game.meterTypes.Life){                        
             this.currentLevel = game.players[0].currentLife;
         }  
-        else if(this.type == game.meterTypes.Level){            
-            
+        else if(this.type == game.meterTypes.Level){                        
             this.currentLevel = game.currentLevelTimer;
         }
     }
     
     this.draw = function(){
+        if(this.type == game.meterTypes.Bomb)
+            var color = game.colors.Bomb;
+        else if(this.type == game.meterTypes.Well)
+            var color = game.colors.Well;        
+        else if(this.type == game.meterTypes.Life)
+            var color = game.colors.Ship;
+        else
+            var color = "#000000";
         
         if(this.orientation == this.orientations.Vertical){
+            
             draw.drawRectCentered(this.x, this.y, this.width, this.height, "#000000");
-            draw.drawFilledRectCentered(this.x, this.y, this.width, this.height*(this.currentLevel/this.maxLevel), "#000000"); 
+            draw.drawFilledRectCentered(this.x, this.y, this.width, this.height*(this.currentLevel/this.maxLevel), color); 
         }
         else if(this.orientation == this.orientations.Horizontal){
             draw.drawRectCentered(this.x, this.y, this.width, this.height, "#000000");
-            draw.drawFilledRectCentered(this.x, this.y, this.width*(1-this.currentLevel/this.maxLevel), this.height, "#000000");    
+            draw.drawFilledRectCentered(this.x, this.y, this.width*(1-this.currentLevel/this.maxLevel), this.height, color);    
         }
         
        

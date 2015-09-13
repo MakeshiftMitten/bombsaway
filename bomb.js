@@ -71,8 +71,8 @@ function bomb(x, y, velX, velY, destX, destY){
         var xRef = (player.x - this.x)/Math.abs(player.x - this.x);
         var yRef = -(player.y - this.y)/Math.abs(player.y - this.y);
         
-        game.players[0].velX += Math.cos(deg)*xRef*this.magnitude/dist;
-        game.players[0].velY += Math.sin(deg)*yRef*this.magnitude/dist;
+        game.players[0].velX += Math.cos(deg)*xRef*this.magnitude*this.magnitude/2/dist/dist;
+        game.players[0].velY += Math.sin(deg)*yRef*this.magnitude*this.magnitude/2/dist/dist;
         
         for(var b = 0; b < game.bots.length; b++){
             

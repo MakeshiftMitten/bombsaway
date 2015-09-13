@@ -65,7 +65,10 @@ function drawLevelCentricObject(){
             draw.drawText(20, game.gameHeight -10, "[G]ravity: " + game.gravity);
             draw.drawText(20, game.gameHeight - 11, "Level: " + game.level);
             
-            
+            draw.drawText(game.gameWidth/2- 13, game.gameHeight - 2, "Gravity Wells");
+            draw.drawText(game.gameWidth/2+ 9, game.gameHeight - 2, "Bombs");
+            draw.drawText(game.gameWidth/2 - 1, game.gameHeight - 2, "Life");
+            draw.drawText(game.gameWidth/2- 25, game.gameHeight - 17, "Level");
             
             
 
