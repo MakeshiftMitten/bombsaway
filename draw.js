@@ -74,11 +74,14 @@ function drawLevelCentricObject(){
             draw.drawText(game.gameWidth/2 + 25, game.gameHeight - 9, "Max Well Ammo: " + game.players[0].maxWellAmmo);
             draw.drawText(game.gameWidth/2 + 25, game.gameHeight - 7, "Well Regen Rate: " + game.players[0].wellRegenRate);
         
-            draw.drawText(3, game.gameHeight - 9, "Directions: Survive");
-            draw.drawText(3, game.gameHeight - 7, "WASD will move you, albeit very poorly.");            
-            draw.drawText(3, game.gameHeight - 5, "Click to shoot self propelling bombs ");
-            draw.drawText(3, game.gameHeight - 3, "Release to detonate!");
-            draw.drawText(3, game.gameHeight - 1, "Mouse Wheel switches weapons. Good luck!");
+            draw.drawText(3, game.gameHeight - 10.5, "WELCOME TO BOMBS AWAY");
+            draw.drawText(3, game.gameHeight - 9, "Directions: Survive! Walls do damage.");
+            draw.drawText(3, game.gameHeight - 7.5, "WASD will move you, albeit very poorly.");            
+            draw.drawText(3, game.gameHeight - 6, "Click to shoot self propelling bombs, ");
+            draw.drawText(3, game.gameHeight - 4.5, "Release to detonate!");
+            draw.drawText(3, game.gameHeight - 3, "Circle drops from enemies are powerups.");    
+            draw.drawText(3, game.gameHeight - 1.5, "Mouse Wheel switches weapons. Good luck!");
+            
         
         
            
