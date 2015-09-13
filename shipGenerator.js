@@ -1,42 +1,38 @@
-function bot(x, y, width, height, fireInterval, shotSpeed, type) {
+function shipGenerator(x, y, width, height, deployInterval, type){
     this.x = x;
     this.y = y;
     
     this.width = width;
     this.height = height;
-    
-    this.fireInterval = fireInterval;
-    this.shotSpeed = shotSpeed;
+    this.deployInterval = deployInterval;
     
     this.type = type;
     this.states = {"Alive":0, "Exploded":1, "Dissipated":2};
     this.state = this.states.Alive;
+        
+    this.currentTimer = this.deployInterval;
     
-    this.shotTimer = 2;
-    this.currentTimer = this.shotTimer;
-    
-    this.velX = 4;
-    this.velY = 4;
+    this.velX = 0;
+    this.velY = 0;
     
     this.right = function(){return this.x + this.width/2;};
     this.left = function(){return this.x - this.width/2};
     this.top = function(){return this.y - this.height/2};
     this.bottom = function(){return this.y + this.height/2};
     
-    this.printSides = function(){        
-        console.log("Player Right: " + this.right() + " Left: " + this.left() + " Top" + this.top() + " Bottom" + this.bottom());
-    }
-    
     this.draw = function(){
         draw.drawFilledRectCentered(this.x, this.y, this.width, this.height, game.colors.Bomb);        
+        draw.drawFilledRectCentered(this.x, this.y, this.width/2, this.height/2, game.colors.Bomb);        
+        
+        
     }       
     
-    this.shoot = function(){
+    this.deploy = function(){
         if(this.type == game.weapons.Bomb){
-            game.bombs.push(new bomb(this.x, this.y, 0, 0, game.players[0].x, game.players[0].y));
+            game.bots.push(new bot(this.x, this.y, 2, 2, .5, 10, game.weapons.Bomb));
         }
         if(this.type == game.weapons.Well){
-            game.wells.push(new well(this.x, this.y, 0, 0, game.players[0].x, game.players[0].y));
+            game.bots.push(new bot(this.x, this.y, 2, 2, .5, 10, game.weapons.Well));
         }                            
     }
         
@@ -66,34 +62,38 @@ function bot(x, y, width, height, fireInterval, shotSpeed, type) {
         
         if(this.x-this.width/2 < 0){
             this.x = this.width/2;
-            this.state = this.states.Dissipated;
+            this.velX = -this.velX/2;
+            this.explode();
         }
         if(this.x+this.width/2 > game.gameWidth){
             this.x = game.gameWidth - this.width/2;
             this.velX = -this.velX/2;
-            this.state = this.states.Dissipated;
+            this.explode();
         }
         if(this.y+this.height/2 > game.gameHeight - 20){            
             this.y = game.gameHeight - 20 - this.height/2;
             this.velY = -this.velY/2;
-            this.state = this.states.Dissipated;
+            this.explode();
         }        
         if(this.y-this.height/2 < 0){            
             this.y = this.height/2;
             this.velY = -this.velY/2;
-            this.state = this.states.Dissipated;
+            this.explode();
         }
         
+    }
+    
+    this.explode = function(){
+        this.state = this.states.Dissipated;
     }
     
     this.updateState = function(dt){
         this.currentTimer -= dt;
         if (this.currentTimer <= 0){
-            this.shoot();
-            this.currentTimer = this.shotTimer;
+            this.deploy();
+            this.currentTimer = this.deployInterval;
         }
         
-        
     }
+    
 }
-

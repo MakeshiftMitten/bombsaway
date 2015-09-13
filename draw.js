@@ -45,6 +45,10 @@ function drawLevelCentricObject(){
             for(var b = 0; b < game.bots.length; b++){
                 game.bots[b].draw();
             }
+        
+            for(var g = 0; g < game.generators.length; g++){
+                game.generators[g].draw();
+            }
 
             for(var d = 0; d < game.floors.length; d++){
                 game.floors[d].draw();

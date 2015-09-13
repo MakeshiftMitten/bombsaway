@@ -69,6 +69,10 @@ function update(dt){
         game.bots[b].update(dt);           
     }
     
+    for(var s = 0; s < game.generators.length; s++){
+        game.generators[s].update(dt);           
+    }
+    
     if(game.liveBomb)
         game.liveBomb.update(dt);
     
@@ -94,6 +98,19 @@ function clearSpentBombsAndWells(){
     for(var w = 0; w < game.wells.length; w++){
         if(game.wells[w].state == game.wells[w].states.Dissipated){
             game.wells.splice(w, 1);
+            w-=1;
+        }            
+    }
+    for(var w = 0; w < game.bots.length; w++){
+        if(game.bots[w].state == game.bots[w].states.Dissipated){
+            game.bots.splice(w, 1);
+            w-=1;
+        }            
+    }
+    
+    for(var w = 0; w < game.generators.length; w++){
+        if(game.generators[w].state == game.generators[w].states.Dissipated){
+            game.generators.splice(w, 1);
             w-=1;
         }            
     }

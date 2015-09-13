@@ -8,6 +8,10 @@ function player(x, y){
     this.width = 1;
     this.height = 3;
     
+    this.maxLife = 100;
+    this.currentLife = 100;
+    this.lifeRegen = 2;
+    
     this.maxBombAmmo = 100;
     this.maxWellAmmo = 100;
     this.bombAmmo = 100;
@@ -71,6 +75,8 @@ function player(x, y){
         
         this.bombAmmo += this.bombRegenRate*dt;
         this.wellAmmo += this.wellRegenRate*dt;        
+        this.currentLife += this.lifeRegen*dt;
+        
         
         if(this.bombAmmo > this.maxBombAmmo)
             this.bombAmmo = this.maxBombAmmo;
@@ -78,6 +84,8 @@ function player(x, y){
         if(this.wellAmmo > this.maxWellAmmo)
             this.wellAmmo = this.maxWellAmmo;
         
+        if(this.currentLife > this.maxLife)
+            this.currentLife = this.maxLife;
         
         this.updateState(dt);
         
@@ -127,19 +135,23 @@ function player(x, y){
         
         if(this.x-this.width/2 < 0){
             this.x = this.width/2;
-            this.velX = -this.velX/2;
+            this.currentLife-= Math.abs(this.velX);
+            this.velX = -this.velX/2;            
         }
         if(this.x+this.width/2 > game.gameWidth){
             this.x = game.gameWidth - this.width/2;
-            this.velX = -this.velX/2;
+            this.currentLife-= Math.abs(this.velX);
+            this.velX = -this.velX/2;            
         }
         if(this.y+this.height/2 > game.gameHeight - 20){            
             this.y = game.gameHeight - 20 - this.height/2;
-            this.velY = -this.velY/2;
+            this.currentLife-= Math.abs(this.velY);
+            this.velY = -this.velY/2;            
         }        
         if(this.y-this.height/2 < 0){            
             this.y = this.height/2;
-            this.velY = -this.velY/2;
+            this.currentLife-= Math.abs(this.velY);
+            this.velY = -this.velY/2;            
         }
     }
     

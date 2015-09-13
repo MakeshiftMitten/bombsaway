@@ -19,6 +19,13 @@ function meter(x, y, type){
         this.currentLevel = game.players[0].maxWellAmmo;
         this.orientation = this.orientations.Vertical;
     }
+    if(this.type == game.meterTypes.Life){
+        this.width = 1;
+        this.height = 10;
+        this.maxLevel = game.players[0].maxLife;
+        this.currentLevel = game.players[0].maxLife;
+        this.orientation = this.orientations.Vertical;
+    }
     else if(this.type == game.meterTypes.Level){
         this.width = 40;
         this.height = 2;
@@ -28,12 +35,15 @@ function meter(x, y, type){
     }
     
     this.update = function(){
-        if(this.type == game.meterTypes.Bomb || this.type == game.meterTypes.Well){                        
+        if(this.type == game.meterTypes.Bomb){                        
             this.currentLevel = game.players[0].bombAmmo;
         }
         if(this.type == game.meterTypes.Well){                        
             this.currentLevel = game.players[0].wellAmmo;
-        }   
+        }  
+        if(this.type == game.meterTypes.Life){                        
+            this.currentLevel = game.players[0].currentLife;
+        }  
         else if(this.type == game.meterTypes.Level){            
             
             this.currentLevel = game.currentLevelTimer;

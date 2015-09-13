@@ -94,6 +94,26 @@ function bomb(x, y, velX, velY, destX, destY){
             
         }
         
+        for(var b = 0; b < game.generators.length; b++){
+            
+            var gen = game.generators[b];
+            
+            var slopeTop= gen.y - this.y;
+            var slopeBottom = gen.x - this.x;
+            var slope = slopeTop/slopeBottom;
+
+            var deg = Math.atan(Math.abs(slopeTop/slopeBottom));          
+            var dist = Math.sqrt((this.y-gen.y)*(this.y-gen.y) + (gen.x - this.x)*(gen.x-this.x));    
+            console.log(dist);
+
+            var xRef = (gen.x - this.x)/Math.abs(gen.x - this.x);
+            var yRef = -(gen.y - this.y)/Math.abs(gen.y - this.y);
+            
+            game.generators[b].velX += Math.cos(deg)*xRef*this.magnitude/dist/2;
+            game.generators[b].velY += Math.sin(deg)*yRef*this.magnitude/dist/2;
+            
+        }
+        
         game.bombs.push(this);
     }
     
