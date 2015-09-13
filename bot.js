@@ -1,4 +1,4 @@
-function bot(x, y, width, height, fireInterval, shotSpeed, type) {
+function bot(x, y, width, height, fireInterval, shotSpeed, shotDuration, type) {
     this.x = x;
     this.y = y;
     
@@ -12,11 +12,11 @@ function bot(x, y, width, height, fireInterval, shotSpeed, type) {
     this.states = {"Alive":0, "Exploded":1, "Dissipated":2};
     this.state = this.states.Alive;
     
-    this.shotTimer = 2;
+    this.shotTimer = 4;
     this.currentTimer = this.shotTimer;
     
-    this.velX = 4;
-    this.velY = 4;
+    this.velX = Math.random()*8-4;
+    this.velY = Math.random()*8-4;
     
     this.right = function(){return this.x + this.width/2;};
     this.left = function(){return this.x - this.width/2};
@@ -28,15 +28,17 @@ function bot(x, y, width, height, fireInterval, shotSpeed, type) {
     }
     
     this.draw = function(){
-        draw.drawFilledRectCentered(this.x, this.y, this.width, this.height, game.colors.Bomb);        
+        var color = this.type == game.weapons.Bomb ? game.colors.Bomb:game.colors.Well;
+        draw.drawFilledRectCentered(this.x, this.y, this.width, this.height, color);        
     }       
     
-    this.shoot = function(){
+    this.shoot = function(){        
+        
         if(this.type == game.weapons.Bomb){
-            game.bombs.push(new bomb(this.x, this.y, 0, 0, game.players[0].x, game.players[0].y));
+            game.bombs.push(new bomb(this.x, this.y, 0, 0, game.players[0].x, game.players[0].y, 20));
         }
         if(this.type == game.weapons.Well){
-            game.wells.push(new well(this.x, this.y, 0, 0, game.players[0].x, game.players[0].y));
+            game.wells.push(new well(this.x, this.y, 0, 0, game.players[0].x, game.players[0].y, 20));
         }                            
     }
         
@@ -49,40 +51,50 @@ function bot(x, y, width, height, fireInterval, shotSpeed, type) {
         var gravMult = 1;
         for(var w = 0; w < game.wells.length; w++)
         {
-            var dist = Math.sqrt((game.wells[w].y-this.y)*(game.wells[w].y-this.y) + (this.x - game.wells[w].x)*(this.x-game.wells[w].x));  
-            console.log("dist " + dist);
+            var dist = Math.sqrt((game.wells[w].y-this.y)*(game.wells[w].y-this.y) + (this.x - game.wells[w].x)*(this.x-game.wells[w].x));              
             if(dist < game.wells[w].radius)
             {
                 console.log("reverse grav");
                 gravMult = -1;
             }
-        }
-        console.log(this.velY + " " + game.gravity + " " + dt);
-        this.velY -= game.gravity*game.gravity*gravMult*dt;                
-        console.log(this.velY);        
+        }        
+        //this.velY -= game.gravity*game.gravity*gravMult*dt;                        
         
         this.x += this.velX*dt;
         this.y -= this.velY*dt;                   
         
         if(this.x-this.width/2 < 0){
             this.x = this.width/2;
-            this.state = this.states.Dissipated;
+            this.velX = this.velX/2;
+            this.explode();
         }
         if(this.x+this.width/2 > game.gameWidth){
             this.x = game.gameWidth - this.width/2;
             this.velX = -this.velX/2;
-            this.state = this.states.Dissipated;
+            this.explode();
         }
         if(this.y+this.height/2 > game.gameHeight - 20){            
             this.y = game.gameHeight - 20 - this.height/2;
             this.velY = -this.velY/2;
-            this.state = this.states.Dissipated;
+            this.explode();
         }        
         if(this.y-this.height/2 < 0){            
             this.y = this.height/2;
             this.velY = -this.velY/2;
-            this.state = this.states.Dissipated;
+            this.explode();
         }
+        
+    }
+    
+    this.explode = function(){
+        this.state = this.states.Dissipated;
+        game.score += 50;
+        if(this.type == game.weapons.Bomb){
+            game.powerups.push(new powerup(this.x, this.y, this.velX, this.velY, game.powerupTypes.BombChargeRate));
+        }
+        if(this.type == game.weapons.Well){
+            game.powerups.push(new powerup(this.x, this.y, this.velX, this.velY, game.powerupTypes.WellChargeRate));
+        } 
         
     }
     

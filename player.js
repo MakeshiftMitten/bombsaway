@@ -7,17 +7,18 @@ function player(x, y){
     
     this.width = 1;
     this.height = 3;
+    this.moveSpeed = 5;
     
     this.maxLife = 100;
     this.currentLife = 100;
     this.lifeRegen = 2;
-    
+    this.shotSpeed = 20;
     this.maxBombAmmo = 100;
     this.maxWellAmmo = 100;
     this.bombAmmo = 100;
     this.wellAmmo = 100;   
-    this.bombRegenRate = 2;
-    this.wellRegenRate = 2;
+    this.bombRegenRate = 4;
+    this.wellRegenRate = 4;
     
     this.right = function(){return this.x + this.width/2;};
     this.left = function(){return this.x - this.width/2};
@@ -29,19 +30,22 @@ function player(x, y){
     }
     
     this.draw = function(){
-        draw.drawFilledRectCentered(this.x, this.y, this.width, this.height, game.colors.Ship);        
+        if(this.currentLife > 0)
+            draw.drawFilledRectCentered(this.x, this.y, this.width, this.height, game.colors.Ship);        
+        else
+            draw.drawText(game.gameWidth/2-8, game.gameHeight/2-6, "GAME OVER. PRESS R TO RESTART");
     }        
     
     this.shoot = function(player, x, y){        
         if(game.selectedWeapon == game.weapons.Bomb){    
-            var testBomb = new bomb(player.x, player.y, player.velX, player.velY, x, y);            
+            var testBomb = new bomb(player.x, player.y, player.velX, player.velY, x, y, this.shotSpeed);            
             if(player.bombAmmo >= testBomb.magnitude){
                 game.liveBomb = testBomb;
                 player.bombAmmo -= game.liveBomb.magnitude;
             }
         }
         else if(game.selectedWeapon == game.weapons.Well){
-            var testWell = new well(player.x, player.y, player.velX, player.velY, x, y);            
+            var testWell = new well(player.x, player.y, player.velX, player.velY, x, y, this.shotSpeed);            
             if(player.wellAmmo >= testWell.magnitude){
                 game.liveWell = testWell;
                 player.wellAmmo -= game.liveWell.magnitude;
@@ -53,19 +57,19 @@ function player(x, y){
     this.update = function(dt){          
         //A
         if(game.keys[65]){
-            this.velX = -10;
+            this.velX += -this.moveSpeed*dt;
         }
         //D
         if(game.keys[68]){
-            this.velX = 10;
+            this.velX += this.moveSpeed*dt;
         }
                     
         if(game.keys[87]){
-            this.velY = 10;
+            this.velY += this.moveSpeed*dt;
         }
         
         if(game.keys[83]){
-            this.velY = -10;
+            this.velY += -this.moveSpeed*dt;
         }
         
         if(game.keys[69]){
@@ -75,7 +79,8 @@ function player(x, y){
         
         this.bombAmmo += this.bombRegenRate*dt;
         this.wellAmmo += this.wellRegenRate*dt;        
-        this.currentLife += this.lifeRegen*dt;
+        if(this.currentLife > 0)
+            this.currentLife += this.lifeRegen*dt;
         
         
         if(this.bombAmmo > this.maxBombAmmo)
@@ -104,8 +109,20 @@ function player(x, y){
         for(var w = 0; w < game.powerups.length; w++)
         {
             var dist = distance(game.powerups[w].x, game.powerups[w].y, this.x, this.y)
-            if(dist < game.powerups[w].radius)
-            {                
+            if(dist < game.powerups[w].radius+1)
+            {       
+                if(game.powerups[w].type == game.powerupTypes.BombChargeRate){
+                    this.bombRegenRate+=1;
+                }
+                if(game.powerups[w].type == game.powerupTypes.MaxBombAmmo){
+                    this.maxBombAmmo+=5;
+                }
+                if(game.powerups[w].type == game.powerupTypes.WellChargeRate){
+                    this.wellRegenRate+=1;
+                }
+                if(game.powerups[w].type == game.powerupTypes.MaxWellAmmo){
+                    this.maxWellAmmo+=5;
+                }
                 console.log("hit powerup!");
                 game.powerups.splice([w], 1);
                 w--;
@@ -124,14 +141,6 @@ function player(x, y){
         
         this.x += this.velX*dt;
         this.y -= this.velY*dt;   
-        
-        if(playerFloorHit(this, game.floors[0])){
-            //if(
-            this.velY = 0;
-            //this.x = oldX;
-            this.y = game.floors[0].top()-this.height/2;
-            //this.y = game.floors[0].top() - this.height/2;
-        }
         
         if(this.x-this.width/2 < 0){
             this.x = this.width/2;

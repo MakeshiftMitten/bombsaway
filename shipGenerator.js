@@ -21,18 +21,19 @@ function shipGenerator(x, y, width, height, deployInterval, type){
     this.bottom = function(){return this.y + this.height/2};
     
     this.draw = function(){
-        draw.drawFilledRectCentered(this.x, this.y, this.width, this.height, game.colors.Bomb);        
-        draw.drawFilledRectCentered(this.x, this.y, this.width/2, this.height/2, game.colors.Bomb);        
+        var color = this.type == game.weapons.Bomb ? game.colors.Bomb:game.colors.Well;
+        draw.drawFilledRectCentered(this.x, this.y, this.width, this.height, color);        
+        draw.drawFilledRectCentered(this.x, this.y, this.width/2, this.height/2, color);        
         
         
     }       
     
     this.deploy = function(){
         if(this.type == game.weapons.Bomb){
-            game.bots.push(new bot(this.x, this.y, 2, 2, .5, 10, game.weapons.Bomb));
+            game.bots.push(new bot(this.x, this.y, 2,2, .5, 10, 2,game.weapons.Bomb));
         }
         if(this.type == game.weapons.Well){
-            game.bots.push(new bot(this.x, this.y, 2, 2, .5, 10, game.weapons.Well));
+            game.bots.push(new bot(this.x, this.y, 2,2, .5, 10, 2,game.weapons.Well));
         }                            
     }
         
@@ -52,10 +53,8 @@ function shipGenerator(x, y, width, height, deployInterval, type){
                 console.log("reverse grav");
                 gravMult = -1;
             }
-        }
-        console.log(this.velY + " " + game.gravity + " " + dt);
-        this.velY -= game.gravity*game.gravity*gravMult*dt;                
-        console.log(this.velY);        
+        }        
+        //this.velY -= game.gravity*game.gravity*gravMult*dt;                        
         
         this.x += this.velX*dt;
         this.y -= this.velY*dt;                   
@@ -85,6 +84,13 @@ function shipGenerator(x, y, width, height, deployInterval, type){
     
     this.explode = function(){
         this.state = this.states.Dissipated;
+        game.score += 200;
+        if(this.type == game.weapons.Bomb){
+            game.powerups.push(new powerup(this.x, this.y, this.velX, this.velY, game.powerupTypes.MaxBombAmmo));
+        }
+        if(this.type == game.weapons.Well){
+            game.powerups.push(new powerup(this.x, this.y, this.velX, this.velY, game.powerupTypes.MaxWellAmmo));
+        } 
     }
     
     this.updateState = function(dt){

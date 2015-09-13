@@ -41,11 +41,15 @@ function meter(x, y, type){
         if(this.type == game.meterTypes.Well){                        
             this.currentLevel = game.players[0].wellAmmo;
         }  
-        if(this.type == game.meterTypes.Life){                        
-            this.currentLevel = game.players[0].currentLife;
+        if(this.type == game.meterTypes.Life){              
+            if(game.players[0].currentLife > 0)
+                this.currentLevel = game.players[0].currentLife;
+            else 
+                this.currentLevel = 0;
         }  
         else if(this.type == game.meterTypes.Level){                        
-            this.currentLevel = game.currentLevelTimer;
+            if(game.players[0].currentLife > 0)
+                this.currentLevel = game.currentLevelTimer;
         }
     }
     
