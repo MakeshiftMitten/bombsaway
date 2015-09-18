@@ -13,10 +13,17 @@ Play the contest entry at http://js13kgames.com/entries/bombs-away and retweet/l
 
 This was my first solo entry for the contest starting completely from scratch. I did a lot of things better than I expected, and I certainly fell short on quite a few. 
 
+<h4>My Original Goal and Where It All Went Wrong:</h4>
+
+I set out with the intent of making a platformer where your only method of locomotion was bomb-jumping. Originally I wanted stationary turrets to bomb you, knocking you off course, and maybe have a limited number of bombs. 
+
+What threw me off this course was getting all of the walls to work properly. Corner cases, collision cases from different directions and how to handle them....it all starts to suck when accounting for all that, especially without hacking it together. I'm sure there's a simple way to do it, but I got frustrated and moved away from it. 
+
+I settled on an arena, and originally the goal was survival. After I got bouncing around done, and a sandbox with variable gravity, I started adding bots. Fleshing out the game stopped when, well...the time ran out. 
 
 <h4>What Went Well: </h4>
 
-Mechanics: For the most part, the mechanics work about as well as I could have hoped for given the total amount of time spent on them. The bombs, once you get the hang of them, are fun and useful. The wells, though harder to incorporate, get much more useful as gravity increases as they directly counter it. The enemy spawners work pretty well. 
+Mechanics: For the most part, the mechanics work about as well as I could have hoped for given the total amount of time spent on them. The bombs, once you get the hang of them, are fun and useful, even if some cases are not quite right. The wells, though harder to incorporate, get much more useful as gravity increases as they directly counter it. The enemy spawners work pretty well. 
 
 One thing I wish I could have spent more time on was basic enemy AI. The bombers should have been able to calculate some trajectories to keep themselves off the walls, and ideally a set of bots should have worked to protect their spawner. An intelligent bot-spawner swarm could make for a really hellish, fun level.
 
@@ -39,6 +46,8 @@ UX: This was my biggest failure. The UX was awful. Terrible. All the mechanics i
 <h4>What I Want For Next Year:</h4>
 
 Sound: I think simple sound for the bombs/enemy death could really make them pop. The entries that did sound certainly have a leg up.
+
+Better Collision Detection: I'm bad at it. I'm bad at timesteps and I'm bad at correcting for fine-grained collisions. I need to be better at it. Or at least spend more time on it.
 
 Art: It's gotta be better. Circles and Squares don't cut it.
 
