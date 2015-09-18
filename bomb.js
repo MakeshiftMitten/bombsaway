@@ -1,4 +1,4 @@
-function bomb(x, y, velX, velY, destX, destY){
+function bomb(x, y, velX, velY, destX, destY, shotSpeed){
     
     
     var slopeTop= destY - y;
@@ -13,10 +13,12 @@ function bomb(x, y, velX, velY, destX, destY){
     
     this.velX = velX;
     this.velY = velY;
+    this.shotSpeed = shotSpeed;
     
-    this.velX += Math.cos(deg)*xRef*20;
-    this.velY += Math.sin(deg)*yRef*20;
+    this.velX += Math.cos(deg)*xRef*this.shotSpeed;
+    this.velY += Math.sin(deg)*yRef*this.shotSpeed;
     this.magnitude = dist;
+    
     
     //this.velX = Math.cos(deg)*dist*xRef*2;
     //this.velY = Math.sin(deg)*dist*yRef*2;
@@ -32,7 +34,7 @@ function bomb(x, y, velX, velY, destX, destY){
     
     this.explodeTimer = 1;
     this.explosionBaseRadius = .5;
-    this.explosionMaxRadius = dist/4;
+    this.explosionMaxRadius = this.magnitude/2;
     
     //Start in the plant state
     this.states = {"Placed":0, "Detonated":1, "Dissipated":2};
@@ -71,8 +73,8 @@ function bomb(x, y, velX, velY, destX, destY){
         var xRef = (player.x - this.x)/Math.abs(player.x - this.x);
         var yRef = -(player.y - this.y)/Math.abs(player.y - this.y);
         
-        game.players[0].velX += Math.cos(deg)*xRef*this.magnitude/dist;
-        game.players[0].velY += Math.sin(deg)*yRef*this.magnitude/dist;
+        game.players[0].velX += Math.cos(deg)*xRef*this.magnitude*this.magnitude/2/dist/dist;
+        game.players[0].velY += Math.sin(deg)*yRef*this.magnitude*this.magnitude/2/dist/dist;
         
         for(var b = 0; b < game.bots.length; b++){
             

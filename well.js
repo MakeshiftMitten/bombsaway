@@ -1,4 +1,4 @@
-function well(x, y, velX, velY, destX, destY){
+function well(x, y, velX, velY, destX, destY, shotSpeed){
     
     
     var slopeTop= destY - y;
@@ -11,8 +11,10 @@ function well(x, y, velX, velY, destX, destY){
     var xRef = (destX-x)/Math.abs(destX-x);
     var yRef = -(destY-y)/Math.abs(destY-y);
     
-    this.velX = velX + Math.cos(deg)*xRef*10;
-    this.velY = velY + Math.sin(deg)*yRef*10;
+    this.shotSpeed = shotSpeed;
+    
+    this.velX = velX + Math.cos(deg)*xRef*this.shotSpeed;
+    this.velY = velY + Math.sin(deg)*yRef*this.shotSpeed;
     this.magnitude = dist;
     
     //this.velX = Math.cos(deg)*dist*xRef*2;

@@ -25,7 +25,12 @@ function update(dt){
     {
         game.levelUp();
     }
-        
+    
+    if(game.keys[82]){
+        console.log("new!");
+        game = new gameObject();
+        game.init();
+    }
     /*
     if(game.keys[32]){
         //game.bombs[32]
@@ -113,7 +118,9 @@ function clearSpentBombsAndWells(){
             game.generators.splice(w, 1);
             w-=1;
         }            
-    }
+    }     
+    
+    
 }
 
 game = new gameObject();

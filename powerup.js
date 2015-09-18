@@ -4,6 +4,7 @@ function powerup(x, y, velX, velY, type){
     this.velX = velX;
     this.velY = velY;
     this.radius = 1;
+    this.type = type;
     
     this.update = function(dt){
         this.x += this.velX*dt;
@@ -29,7 +30,18 @@ function powerup(x, y, velX, velY, type){
     }
     
     this.draw = function(){
-        draw.drawFilledCircle(this.x, this.y, this.radius, "#880000");    
+        if(this.type == game.powerupTypes.BombChargeRate){
+            draw.drawFilledCircle(this.x, this.y, this.radius, game.colors.Bomb);    
+        }
+        if(this.type == game.powerupTypes.MaxBombAmmo){
+            draw.drawFilledCircle(this.x, this.y, this.radius, game.colors.Bomb);    
+        }
+        if(this.type == game.powerupTypes.WellChargeRate){
+            draw.drawFilledCircle(this.x, this.y, this.radius, game.colors.Well);    
+        }
+        if(this.type == game.powerupTypes.MaxWellAmmo){
+            draw.drawFilledCircle(this.x, this.y, this.radius, game.colors.Well);    
+        }
     }
     
 }

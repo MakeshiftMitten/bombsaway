@@ -12,10 +12,6 @@ function drawLevelCentricObject(){
             ctx.rect(0, 0, gameCanvas.width, gameCanvas.height);             
             ctx.rect(0, 0, gameCanvas.width, gameCanvas.height - gameXToCanvasX(20));       
             ctx.stroke();        
-            if(game.isMobile())
-                draw.drawText(0, 10, "MOBILE");                             
-            else
-                draw.drawText(0, 10, "NOT MOBILE"); 
             
             if(game.liveBomb)
                 game.liveBomb.draw();
@@ -62,10 +58,33 @@ function drawLevelCentricObject(){
                 game.meters[m].draw();
             }
         
-            draw.drawText(20, game.gameHeight -10, "[G]ravity: " + game.gravity);
-            draw.drawText(20, game.gameHeight - 11, "Level: " + game.level);
+            draw.drawText(game.gameWidth/2- 27, game.gameHeight - 17, "Level: " + game.level);
+            draw.drawText(game.gameWidth/2- 27,game.gameHeight - 15, "[G]ravity: " + game.gravity);
             
+            draw.drawText(game.gameWidth/2- 27, game.gameHeight - 13, "Spawners: " + game.generators.length);
+            draw.drawText(game.gameWidth/2- 27, game.gameHeight - 11, "Bots: " + game.bots.length);
             
+            draw.drawText(game.gameWidth/2- 13, game.gameHeight - 2, "Gravity Wells");
+            draw.drawText(game.gameWidth/2+ 9, game.gameHeight - 2, "Bombs");
+            draw.drawText(game.gameWidth/2 - 1, game.gameHeight - 2, "Life");            
+            draw.drawText(game.gameWidth/2 + 25, game.gameHeight - 17, "Score: " + game.score);
+            draw.drawText(game.gameWidth/2 + 25, game.gameHeight - 15, "Move Speed: " + game.players[0].moveSpeed);
+            draw.drawText(game.gameWidth/2 + 25, game.gameHeight - 13, "Max Bomb Ammo: " + game.players[0].maxBombAmmo);
+            draw.drawText(game.gameWidth/2 + 25, game.gameHeight - 11, "Bomb Regen Rate: " + game.players[0].bombRegenRate);
+            draw.drawText(game.gameWidth/2 + 25, game.gameHeight - 9, "Max Well Ammo: " + game.players[0].maxWellAmmo);
+            draw.drawText(game.gameWidth/2 + 25, game.gameHeight - 7, "Well Regen Rate: " + game.players[0].wellRegenRate);
+        
+            draw.drawText(3, game.gameHeight - 10.5, "WELCOME TO BOMBS AWAY");
+            draw.drawText(3, game.gameHeight - 9, "Directions: Survive! Walls do damage.");
+            draw.drawText(3, game.gameHeight - 7.5, "WASD will move you, albeit very poorly.");            
+            draw.drawText(3, game.gameHeight - 6, "Click to shoot self propelling bombs, ");
+            draw.drawText(3, game.gameHeight - 4.5, "Release to detonate!");
+            draw.drawText(3, game.gameHeight - 3, "Circle drops from enemies are powerups.");    
+            draw.drawText(3, game.gameHeight - 1.5, "Mouse Wheel switches weapons. Good luck!");
+            
+        
+        
+           
             
             
 
@@ -191,3 +210,4 @@ function drawPlayerCentricObject(){
         ctx.stroke();
     }
 }
+
