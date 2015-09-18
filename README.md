@@ -1,20 +1,20 @@
 # bombsaway
 jk13k 2015 Entry
 
-See the contest entry at http://js13kgames.com/entries/bombs-away
+Play the contest entry at http://js13kgames.com/entries/bombs-away and retweet/like/g+!
 
-ADDITIONAL INSTRUCTIONS:
+<h3>ADDITIONAL INSTRUCTIONS:</h3>
 
 - Bombs and Wells: clicking will shoot a bomb/well. The farther from your ship you click, the bigger/more powerful the bomb will be. 
 - Levels: the first level is a sandbox, not the whole game! It's also way too long by poor design. The first few levels attempt to introduce enemies and concepts, before you get turned loose against ever-increasing odds. 
 - Weapon Select: Mouse wheel OR touch the corresponding button down below
 
-CONTEST POST-MORTEM
+<h3>CONTEST POST-MORTEM</h3>
 
 This was my first solo entry for the contest starting completely from scratch. I did a lot of things better than I expected, and I certainly fell short on quite a few. 
 
 
-What Went Well: 
+<h4>What Went Well: </h4>
 
 Mechanics: For the most part, the mechanics work about as well as I could have hoped for given the total amount of time spent on them. The bombs, once you get the hang of them, are fun and useful. The wells, though harder to incorporate, get much more useful as gravity increases as they directly counter it. The enemy spawners work pretty well. 
 
@@ -27,7 +27,7 @@ One thing that was especially helpful was working only in Game Units for distanc
 I also abstracted out a lot of features for building the game, even if they aren't showcased that way in the final product -  I have three color pallettes I can swap with a key press in game(removed for release), and my camera is the same way, although the player-centric camera is hopelessly broken/ignored in the spirit of finishing. The game is also fairly capable of handling two players, but again - ran out of time. 
 
 
-What Could Be Improved:
+<h4>What Could Be Improved:</h4>
 
 Scope: I tried to do A LOT with this game, and probably bit off more than I could chew. I waited until the very last minute to put together the level system, and as a result, well, it looks like I tried to pull an all nighter and THEN try to build a level system! Timer doesn't work, enemies spawn in a clunky manner, often killing themselves before you can get to them, and levels switch too quickly, eating up your hard earned(ha) powerups before you can get to them. 
 
@@ -36,7 +36,7 @@ Learning ingame: This fell flat on its face. What was supposed to be a series of
 UX: This was my biggest failure. The UX was awful. Terrible. All the mechanics in the world could not have saved it. It looked clunky, it felt clunky, and it didn't bite into the player and make them want more. I would have been better off starting iwth a level loop and building every more complicated enemies than the other way around. 
 
 
-What I Want For Next Year:
+<h4>What I Want For Next Year:</h4>
 
 Sound: I think simple sound for the bombs/enemy death could really make them pop. The entries that did sound certainly have a leg up.
 
